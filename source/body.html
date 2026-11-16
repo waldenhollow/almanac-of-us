@@ -1,0 +1,184 @@
+<a class="skip" href="#finder">Skip to the finder</a>
+
+<div class="notice" id="previewBar" hidden>
+  <div class="wrap"><strong>Preview build.</strong> Checkout is simulated here: no card is asked for and nothing is charged.</div>
+</div>
+<div class="notice gift" id="giftBar" hidden>
+  <div class="wrap"><span id="giftBarText"></span> <button type="button" class="link" id="giftOwn">Start your own</button></div>
+</div>
+
+<header class="mast">
+  <div class="wrap mast-in">
+    <a class="wordmark" href="#top" aria-label="Almanac of Us, top of page">Almanac <i>of</i> Us</a>
+    <nav class="mast-nav" aria-label="Sections">
+      <a href="#almanac">Your days</a>
+      <a href="#days">What we count</a>
+      <a href="#price" class="paid-only">Price</a>
+      <a href="#questions">Questions</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="band hero" id="finder" aria-labelledby="thesis">
+    <div class="wrap grid">
+      <p class="gutter eyebrow">The idea</p>
+      <div class="col">
+        <h1 id="thesis">There is one day when you are exactly the age your mother was when you were born.</h1>
+        <p class="lede">On that same day she is exactly twice your age, and has spent exactly half her life as your mother. It happens once, and no calendar marks it. This one does, along with every other day like it hiding in your family.</p>
+      </div>
+    </div>
+    <div class="wrap grid finder">
+      <p class="gutter eyebrow" id="whoLabel">Who</p>
+      <form class="col people" id="people" novalidate aria-labelledby="whoLabel">
+        <div id="rows"></div>
+        <div class="people-foot">
+          <button type="submit" class="btn" id="findBtn">Show our days</button>
+          <button type="button" class="btn ghost" id="addPerson">Add someone</button>
+          <p class="hint">Birthdays stay in this browser. Nothing is uploaded.</p>
+        </div>
+        <p class="form-error" id="formError" role="alert" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="band result" id="result" aria-live="polite" aria-label="Your day"></section>
+
+  <section class="band" id="almanac" aria-labelledby="almanacH">
+    <div class="wrap grid">
+      <p class="gutter eyebrow">Your days</p>
+      <div class="col">
+        <h2 id="almanacH">Every hidden day, in order</h2>
+        <p class="sub" id="almanacSub"></p>
+        <div class="tabs" role="tablist" aria-label="Which days to show">
+          <button type="button" role="tab" id="tabNext" aria-controls="timeline" aria-selected="true">Next ten years</button>
+          <button type="button" role="tab" id="tabPast" aria-controls="timeline" aria-selected="false">Already happened</button>
+        </div>
+        <div id="timeline" role="tabpanel" aria-labelledby="tabNext"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="days" aria-labelledby="daysH">
+    <div class="wrap grid">
+      <p class="gutter eyebrow">What we count</p>
+      <div class="col">
+        <h2 id="daysH">Twelve kinds of day that no calendar prints</h2>
+        <p class="sub">Each one is plain arithmetic on birthdays, and each one happens to a family exactly once.</p>
+      </div>
+    </div>
+    <dl class="wrap catalog">
+      <div class="grid entry"><dt class="gutter">Echo Day</dt><dd class="col">A child reaches the exact age their parent was on the day the child was born. On that day the parent is exactly twice the child&rsquo;s age, and has been a parent for half a lifetime.</dd></div>
+      <div class="grid entry"><dt class="gutter">Half-Life Day</dt><dd class="col">You have known someone for exactly half your life. From the next morning on, you have had them longer than you were without them.</dd></div>
+      <div class="grid entry"><dt class="gutter">Century Day</dt><dd class="col">Two people&rsquo;s ages add up to exactly one hundred.</dd></div>
+      <div class="grid entry"><dt class="gutter">Triple Day, Tenfold Day</dt><dd class="col">The single day one person is exactly three, ten or a hundred times as old as another. A new father is a thousand times his daughter&rsquo;s age a week or two after she is born.</dd></div>
+      <div class="grid entry"><dt class="gutter">Add-Up Day</dt><dd class="col">The children&rsquo;s ages add up to exactly their parent&rsquo;s.</dd></div>
+      <div class="grid entry"><dt class="gutter">Myriad Day</dt><dd class="col">Ten thousand days, alive or together. It arrives at 27 years and about four and a half months.</dd></div>
+      <div class="grid entry"><dt class="gutter">Billion Day</dt><dd class="col">One billion seconds, alive or together: 31 years and about eight months.</dd></div>
+      <div class="grid entry"><dt class="gutter">Kilodays</dt><dd class="col">Every thousand days. One comes round every two years and nine months or so, which means it never lands on the same date twice.</dd></div>
+      <div class="grid entry"><dt class="gutter">Planet birthdays</dt><dd class="col">A birthday each time another planet finishes a lap of the Sun since you were born. The first on Jupiter comes just before you turn 12, and the first on Saturn at 29 and a half.</dd></div>
+      <div class="grid entry"><dt class="gutter">A thousand moons</dt><dd class="col">A thousand lunar months, reached a few weeks before the 81st birthday.</dd></div>
+      <div class="grid entry"><dt class="gutter">Golden birthday</dt><dd class="col">Turning 14 on the 14th, or 30 on the 30th: the one birthday when age and date agree.</dd></div>
+      <div class="grid entry"><dt class="gutter">Overtake Day</dt><dd class="col">The day the dog or the cat becomes older than you, by the vets&rsquo; rule of thumb for animal years.</dd></div>
+    </dl>
+  </section>
+
+  <section class="band" id="price" aria-labelledby="priceH">
+    <div class="wrap grid free-only">
+      <p class="gutter eyebrow">Price</p>
+      <div class="col">
+        <h2>Free. All of it.</h2>
+        <p class="sub">It is arithmetic on birthdays, and anyone could do it by hand, so it costs nothing. There is no account, and nothing you type leaves your browser.</p>
+      </div>
+    </div>
+    <div class="wrap grid paid-only">
+      <p class="gutter eyebrow">Price</p>
+      <div class="col">
+        <h2 id="priceH">The first days are free. The whole almanac is <span id="priceInline">$12</span>, once.</h2>
+        <ul class="gets">
+          <li><b>Every hidden day</b> for up to twelve people and pets: all the ones you have already had, and the next ten years of them.</li>
+          <li><b>A private calendar link</b> for Apple, Google and Outlook. Each day arrives on your phone by itself, with a week&rsquo;s notice before the big ones.</li>
+          <li><b>A printable almanac</b> for the coming year, with your family&rsquo;s name on the cover.</li>
+          <li><b>A link to give it away.</b> Build an almanac for someone else&rsquo;s family and send it. They open it without paying or signing up.</li>
+          <li><b>No subscription and no account.</b> If it isn&rsquo;t for you, ask within 14 days and the money comes back.</li>
+        </ul>
+        <div class="buy">
+          <button type="button" class="btn red" id="unlockBtn">Unlock the whole almanac</button>
+          <button type="button" class="link" id="restoreBtn" hidden>I already have a key</button>
+          <p class="hint" id="unlockState"></p>
+        </div>
+      </div>
+    </div>
+    <div class="wrap grid owned" id="owned" hidden>
+      <p class="gutter eyebrow">Yours</p>
+      <div class="col">
+        <div class="owned-actions">
+          <button type="button" class="btn" id="calBtn">Put it in my calendar</button>
+          <button type="button" class="btn ghost" id="giftBtn">Get a link to send it</button>
+        </div>
+        <p class="hint" id="ownedHint"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band edition-band" id="edition" aria-labelledby="editionH">
+    <div class="wrap grid no-print">
+      <p class="gutter eyebrow">The printed year</p>
+      <div class="col">
+        <h2 id="editionH">The almanac for <span id="editionYearText"></span></h2>
+        <p class="sub" id="editionSub"></p>
+        <div class="edition-tools">
+          <label class="f inline"><span>Name on the cover</span><input type="text" id="coverTitle" maxlength="40" placeholder="The Riveras" autocomplete="off"></label>
+          <label class="f inline"><span>Year</span><select id="editionYear"></select></label>
+          <button type="button" class="btn ghost" id="printBtn" hidden>Print or save as PDF</button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap grid">
+      <p class="gutter no-print"></p>
+      <div class="col"><div class="pages" id="pages"></div></div>
+    </div>
+  </section>
+
+  <section class="band" id="questions" aria-labelledby="questionsH">
+    <div class="wrap grid">
+      <p class="gutter eyebrow">Questions</p>
+      <div class="col">
+        <h2 id="questionsH">Fair things to ask</h2>
+        <div class="faq">
+          <details><summary>How exact are the dates?</summary><p>Exact to the day. Ages are counted in whole days from each birthday, the way a calendar counts them. The few days that depend on the hour of birth, such as a billionth second, say so beside the date.</p></details>
+          <details class="free-only"><summary>Where do my family&rsquo;s birthdays go?</summary><p>Nowhere. Everything is worked out inside your browser and there is no server behind this page. If you make a link to send, the names and dates are written into that link, so only share it with the people it is for.</p></details>
+          <details class="free-only"><summary>Is it really free?</summary><p>Yes. No payment, no account, no ads. The code is open for anyone to read or reuse.</p></details>
+          <details class="paid-only"><summary>Where do my family&rsquo;s birthdays go?</summary><p>Nowhere. Everything on this page is worked out inside your browser. If you buy the almanac and switch on the calendar link, the names and dates are encrypted into the link itself and our server forgets them. There is no database of families to lose.</p></details>
+          <details><summary>What if someone has died?</summary><p>Tick &ldquo;no longer with us&rdquo; beside their name. The almanac stops counting their days and keeps only the ones that are about you, such as the day you reach the age your father was when you were born.</p></details>
+          <details><summary>Can I give one as a gift?</summary><p>Yes. Build the almanac for their family, then send the link or print the year&rsquo;s edition. They open it without signing up for anything.</p></details>
+          <details class="paid-only"><summary>Is it a subscription?</summary><p>No. You pay once and the calendar link keeps rolling forward by itself.</p></details>
+          <details><summary>Why is it called an Echo Day?</summary><p>It had no name, so we gave it one. You arrive at the exact age your parent was at the moment you arrived, one generation later.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap grid">
+    <p class="gutter wordmark small">Almanac <i>of</i> Us</p>
+    <div class="col">
+      <p>For people who like their sentiment worked out to the day.</p>
+      <p class="hint free-only">Free to use, and the code is open.</p>
+    </div>
+  </div>
+</footer>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sheetTitle">
+  <div class="sheet-in">
+    <div class="sheet-head">
+      <h3 id="sheetTitle"></h3>
+      <button type="button" class="icon-btn" id="sheetClose" aria-label="Close">&times;</button>
+    </div>
+    <div id="sheetBody"></div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>

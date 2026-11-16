@@ -1,0 +1,1818 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Almanac of Us: find your Echo Day</title>
+<meta name="description" content="There is one day when you are exactly the age your mother was when you were born. Find it, and every other hidden day in your family.">
+<meta property="og:title" content="Almanac of Us">
+<meta property="og:description" content="There is one day when you are exactly the age your mother was when you were born. Find it, and every other hidden day in your family.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2314213A'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23F4F7F9' stroke-width='2'/%3E%3Cpath d='M16 7a9 9 0 0 1 0 18z' fill='%23BF2B1D'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+/* Layout: an almanac page. A narrow margin column carries labels and dates, the entries run in
+   the wide column beside it, and each is ruled off like a line in a ledger. Hidden days are
+   red-letter days, so red is reserved for them and for nothing else. */
+:root {
+  --paper: #E7EDF1;
+  --page: #F4F7F9;
+  --ink: #14213A;
+  --ink-soft: #4B5B76;
+  --rule: #BCC9D6;
+  --red: #BF2B1D;
+  --sun: #E4A31A;
+  --on-ink: #F4F7F9;
+  --on-red: #FFF7F3;
+  --veil: rgb(14 23 38 / .55);
+  --moon-dark: #14213A;
+  --moon-lit: #F4F7F9;
+  --display: 'Libre Caslon Display', 'Libre Caslon Text', Georgia, 'Times New Roman', serif;
+  --text: 'Libre Caslon Text', Georgia, 'Times New Roman', serif;
+  --ui: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E1726; --page: #152236; --ink: #E6ECF4; --ink-soft: #9CADC4; --rule: #2C3C55;
+    --red: #FF7D69; --sun: #F2BC4B; --on-ink: #0E1726; --on-red: #1A0B08; --veil: rgb(3 7 14 / .7);
+    --moon-dark: #2C3C55; --moon-lit: #E6ECF4;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E1726; --page: #152236; --ink: #E6ECF4; --ink-soft: #9CADC4; --rule: #2C3C55;
+  --red: #FF7D69; --sun: #F2BC4B; --on-ink: #0E1726; --on-red: #1A0B08; --veil: rgb(3 7 14 / .7);
+  --moon-dark: #2C3C55; --moon-lit: #E6ECF4;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.6 var(--text); }
+[hidden] { display: none !important; }
+img, canvas, svg { max-width: 100%; }
+h1, h2, h3, p, dl, dd, ol, ul, fieldset, figure { margin: 0; padding: 0; }
+fieldset { border: 0; min-width: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.wrap { max-width: 1060px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.grid { display: grid; grid-template-columns: 156px minmax(0, 1fr); column-gap: 40px; }
+.col { min-width: 0; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip { position: absolute; left: 16px; top: -60px; background: var(--ink); color: var(--on-ink); padding: 10px 14px; font: 600 .9rem var(--ui); z-index: 40; }
+.skip:focus { top: 8px; }
+
+/* type */
+h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4.4vw, 3.3rem); line-height: 1.08; letter-spacing: -.012em; max-width: 19em; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); line-height: 1.14; letter-spacing: -.008em; max-width: 22em; }
+h3 { font-size: 1.45rem; line-height: 1.2; }
+.lede { font-size: 1.2rem; line-height: 1.55; max-width: 33em; margin-top: 1em; }
+.sub { color: var(--ink-soft); max-width: 38em; margin-top: .6em; }
+.eyebrow { font: 600 .72rem/1.5 var(--ui); letter-spacing: .13em; text-transform: uppercase; color: var(--ink-soft); padding-top: .55em; }
+.eyebrow.red { color: var(--red); }
+.hint { font: 400 .84rem/1.5 var(--ui); color: var(--ink-soft); }
+.select { user-select: all; }
+.tag { display: inline-block; font: 600 .64rem/1 var(--ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); border: 1px solid var(--ink-soft); border-radius: 2px; padding: 4px 7px; margin-top: 8px; }
+
+/* masthead */
+.notice { background: var(--ink); color: var(--on-ink); font: 400 .82rem/1.45 var(--ui); padding-block: 8px; }
+.notice.gift { background: var(--red); color: var(--on-red); }
+.mast { border-bottom: 3px double var(--ink); }
+.mast-in { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 28px; padding-block: 16px 12px; }
+.wordmark { font-family: var(--display); font-size: 1.7rem; line-height: 1; text-decoration: none; letter-spacing: -.01em; }
+.wordmark i { font: italic 400 .72em var(--text); padding-inline: .06em; }
+.wordmark.small { font-size: 1.3rem; padding-top: 0; }
+.mast-nav { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+.mast-nav a { font: 500 .78rem/2 var(--ui); letter-spacing: .09em; text-transform: uppercase; text-decoration: none; color: var(--ink-soft); }
+.mast-nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
+/* bands */
+.band { padding-block: clamp(36px, 6vw, 70px); border-top: 1px solid var(--rule); }
+.band.hero { border-top: 0; padding-bottom: clamp(24px, 4vw, 40px); }
+.band.result { background: var(--page); }
+.finder { margin-top: clamp(26px, 4vw, 44px); }
+
+/* controls */
+.btn { font: 600 .93rem/1 var(--ui); letter-spacing: .01em; padding: 13px 20px; border: 1.5px solid var(--ink); background: var(--ink); color: var(--on-ink); border-radius: 2px; cursor: pointer; }
+.btn:hover { opacity: .88; }
+.btn:active { transform: translateY(1px); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.red { background: var(--red); border-color: var(--red); color: var(--on-red); }
+.btn[disabled] { opacity: .45; cursor: default; }
+.link { font: inherit; color: inherit; background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.icon-btn { width: 36px; height: 36px; flex: none; background: none; border: 0; border-radius: 2px; color: var(--ink-soft); font: 400 1.5rem/1 var(--ui); cursor: pointer; }
+.icon-btn:hover { color: var(--ink); }
+
+.f { display: grid; gap: 3px; min-width: 0; }
+.f > span { font: 600 .64rem/1.4 var(--ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+.f input[type="text"], .f select { width: 100%; font: 400 1.12rem/1.3 var(--text); color: var(--ink); background: transparent; border: 0; border-bottom: 1.5px solid var(--ink); border-radius: 0; padding: 6px 2px; }
+.f input::placeholder { color: var(--ink-soft); opacity: .65; }
+.f select { appearance: none; padding-right: 20px; background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%); background-position: calc(100% - 9px) 56%, calc(100% - 4px) 56%; background-size: 5px 5px; background-repeat: no-repeat; }
+.f.inline { max-width: 15em; }
+.triple { display: grid; grid-template-columns: minmax(6.4em, 1.5fr) minmax(2.9em, .6fr) minmax(4em, .8fr); gap: 8px; }
+
+.row { display: flex; flex-wrap: wrap; align-items: end; gap: 12px 18px; padding-block: 14px; border-bottom: 1px solid var(--rule); }
+.row:first-child { border-top: 1.5px solid var(--ink); }
+.row .name { flex: 1 1 150px; }
+.row .rel { flex: 1 1 150px; max-width: 220px; }
+.row .when-born, .row .since { flex: 1 1 260px; max-width: 340px; }
+.row .tail { flex: none; display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.row .gone { display: flex; align-items: center; gap: 8px; font: 400 .84rem var(--ui); color: var(--ink-soft); padding-block: 8px; }
+.row .gone input { width: 17px; height: 17px; accent-color: var(--ink); margin: 0; }
+.missed { font-size: .98rem; font-style: italic; color: var(--ink-soft); margin-top: .6em; max-width: 34em; }
+.people-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 18px; }
+.form-error { margin-top: 14px; font: 500 .92rem/1.45 var(--ui); color: var(--red); }
+
+/* the day */
+.result-who { font-style: italic; color: var(--ink-soft); font-size: 1.1rem; }
+.bigdate { font-family: var(--display); color: var(--red); font-size: clamp(2.5rem, 8.2vw, 5.7rem); line-height: .98; letter-spacing: -.016em; margin: .12em 0 .1em; text-wrap: balance; }
+.bigdate .wd { display: block; font: italic 400 .3em/1.4 var(--text); color: var(--ink); letter-spacing: 0; }
+.when { font: 600 .8rem/1.5 var(--ui); letter-spacing: .12em; text-transform: uppercase; }
+.daytext { font-size: 1.15rem; max-width: 34em; margin-top: 1.1em; }
+.truths { list-style: none; counter-reset: t; display: grid; gap: .7em; max-width: 35em; margin-top: 1.3em; }
+.truths li { counter-increment: t; display: grid; grid-template-columns: 1.7em minmax(0, 1fr); font-size: 1.1rem; }
+.truths li::before { content: counter(t) "."; font-family: var(--display); font-size: 1.2em; line-height: 1.35; color: var(--red); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.7em; }
+.lifelines { margin-top: 1.5em; max-width: 700px; }
+.ll text { font: 500 12px var(--ui); fill: var(--ink-soft); }
+.ll .nm { font-weight: 600; fill: var(--ink); }
+.ll .mark { font-weight: 600; fill: var(--red); }
+.ll .bar-e { fill: var(--ink); }
+.ll .bar-y { fill: var(--red); }
+.ll .span { stroke: var(--ink-soft); stroke-width: 1; fill: none; }
+.ll .echo { stroke: var(--red); stroke-width: 1.5; stroke-dasharray: 3 4; }
+.ll .born { stroke: var(--ink-soft); stroke-width: 1; stroke-dasharray: 2 4; }
+.ll .dot { fill: var(--sun); stroke: var(--ink); stroke-width: 1.5; }
+@media (prefers-reduced-motion: no-preference) {
+  .result.fresh .bigdate { animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; }
+  .result.fresh .ll .bar-e, .result.fresh .ll .bar-y { transform-box: fill-box; transform-origin: left center; animation: grow 1s cubic-bezier(.3, .7, .2, 1) both; }
+  .result.fresh .ll .bar-y { animation-delay: .25s; }
+  html { scroll-behavior: smooth; }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+@keyframes grow { from { transform: scaleX(0); } }
+
+/* the list of days */
+.tabs { display: flex; gap: 24px; border-bottom: 1px solid var(--rule); margin-top: 1.5em; }
+.tabs button { font: 600 .76rem/1 var(--ui); letter-spacing: .1em; text-transform: uppercase; background: none; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; padding: 12px 0; color: var(--ink-soft); cursor: pointer; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--red); }
+.year-head { display: flex; align-items: baseline; gap: 12px; font-family: var(--display); font-size: 1.9rem; line-height: 1; margin: 1.5em 0 .5em; }
+.year-head small { font: 500 .7rem/1 var(--ui); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+.day { display: grid; grid-template-columns: 3.3rem 2.7rem minmax(0, 1fr) auto; column-gap: 16px; align-items: start; padding-block: 14px; border-top: 1px solid var(--rule); }
+.day .md { display: grid; }
+.day .mo, .day .wk { font: 600 .66rem/1.5 var(--ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+.day .dnum { font-family: var(--display); font-size: 1.85rem; line-height: 1; font-variant-numeric: lining-nums; }
+.day .sky { display: grid; gap: 5px; justify-items: start; padding-top: 2px; }
+.day .body { display: flex; gap: 14px; align-items: flex-start; min-width: 0; }
+.day .words { min-width: 0; }
+.sk { flex: none; margin-top: -2px; fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sk .a { stroke: var(--red); }
+.sk .a.fill { fill: var(--red); }
+.day .title { font-weight: 700; line-height: 1.35; }
+.day .text { font-size: .98rem; color: var(--ink-soft); margin-top: 2px; max-width: 40em; }
+.day .away { font: 500 .74rem/1.6 var(--ui); letter-spacing: .04em; color: var(--ink-soft); margin-top: 4px; }
+.day.red .dnum, .day.red .title { color: var(--red); }
+.day .btn { padding: 8px 12px; font-size: .78rem; }
+.moon .disc { fill: var(--moon-dark); stroke: var(--ink-soft); stroke-width: 1; }
+.moon .lit { fill: var(--moon-lit); }
+.empty { padding: 26px 0; color: var(--ink-soft); border-top: 1px solid var(--rule); }
+.locked { border-top: 1px solid var(--rule); padding-top: 6px; }
+.faux { display: grid; grid-template-columns: 3.3rem minmax(0, 1fr); column-gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--rule); opacity: .55; }
+.faux i { display: block; height: 12px; border-radius: 2px; background: var(--rule); }
+.faux i + i { margin-top: 9px; }
+.faux div i:first-child { width: 58%; }
+.faux div i:last-child { width: 86%; }
+.faux:nth-child(2) div i:first-child { width: 44%; }
+.faux:nth-child(2) div i:last-child { width: 74%; }
+a.btn { display: inline-block; text-decoration: none; }
+.lock-cta { margin-top: 22px; border: 1.5px solid var(--ink); background: var(--page); padding: clamp(18px, 3vw, 28px); display: grid; gap: 14px; justify-items: start; }
+.lock-cta p { max-width: 36em; }
+.lock-cta .count { font-family: var(--display); font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1.2; }
+
+/* what we count */
+.catalog { margin-top: 26px; }
+.entry { padding-block: 16px; border-top: 1px solid var(--rule); align-items: baseline; }
+.entry dt { font-family: var(--display); font-size: 1.28rem; line-height: 1.2; }
+.entry dd { max-width: 37em; }
+
+/* price */
+.gets { list-style: none; display: grid; gap: .85em; max-width: 37em; margin-top: 1.5em; }
+.gets li { position: relative; padding-left: 1.5em; }
+.gets li::before { content: ""; position: absolute; left: 0; top: .62em; width: .58em; height: .58em; border-radius: 50%; background: var(--red); }
+.buy, .owned-actions, .edition-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; margin-top: 1.7em; }
+.buy .hint { flex-basis: 100%; }
+.owned { margin-top: 30px; }
+.owned-actions { margin-top: 0; }
+.owned .hint { margin-top: 12px; max-width: 40em; }
+.edition-tools { align-items: end; }
+
+/* the printed year */
+.pages { display: grid; gap: 22px; margin-top: 26px; }
+.leaf { background: var(--page); border: 1px solid var(--rule); padding: clamp(22px, 5vw, 50px); }
+.cover { text-align: center; display: grid; gap: .5em; justify-items: center; padding-block: clamp(34px, 8vw, 84px); }
+.cover .an { font: 600 .74rem var(--ui); letter-spacing: .3em; text-transform: uppercase; }
+.cover .ttl { font-family: var(--display); font-size: clamp(2.2rem, 7vw, 4.3rem); line-height: 1; letter-spacing: -.01em; text-wrap: balance; }
+.cover .yr { font-size: 1.25rem; font-style: italic; }
+.cover .yr b { font-style: normal; font-weight: 400; font-family: var(--display); font-size: 1.5em; color: var(--red); }
+.cover .rule { width: 120px; border-top: 3px double var(--ink); margin-block: 1em; }
+.cover .of { max-width: 26em; text-wrap: balance; }
+.cover .of b { font-weight: 400; font-variant-caps: small-caps; letter-spacing: .06em; }
+.cover .by { font: 500 .7rem var(--ui); letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); margin-top: 1.2em; }
+.month-head { font: 600 .8rem var(--ui); letter-spacing: .22em; text-transform: uppercase; padding-bottom: 10px; border-bottom: 1.5px solid var(--ink); }
+.month-head + .day { border-top: 0; }
+.day + .month-head { margin-top: 26px; }
+.leaf .day { grid-template-columns: 3.3rem 2.7rem minmax(0, 1fr); }
+.leaf-note { color: var(--ink-soft); font-style: italic; }
+.day + .leaf-note { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--rule); }
+
+/* questions */
+.faq { margin-top: 22px; border-bottom: 1px solid var(--rule); max-width: 44em; }
+.faq details { border-top: 1px solid var(--rule); }
+.faq summary { list-style: none; cursor: pointer; font-family: var(--display); font-size: 1.28rem; line-height: 1.3; padding: 15px 34px 15px 0; position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; top: 12px; font: 400 1.4rem var(--ui); color: var(--ink-soft); }
+.faq details[open] summary::after { content: "\2013"; }
+.faq p { padding: 0 0 18px; max-width: 38em; }
+
+.foot { border-top: 3px double var(--ink); padding-block: 30px 46px; }
+.foot .col { display: grid; gap: 6px; }
+
+/* sheet and toast */
+.sheet { border: 1.5px solid var(--ink); border-radius: 2px; background: var(--page); color: var(--ink); padding: 0; width: min(560px, calc(100vw - 32px)); max-height: calc(100% - 40px); }
+.sheet::backdrop { background: var(--veil); }
+.sheet-in { padding: 22px; display: grid; gap: 16px; }
+.sheet-head { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+.sheet-head .icon-btn { margin: -6px -8px 0 0; }
+#sheetBody { display: grid; gap: 14px; min-width: 0; }
+.card { display: block; width: 100%; max-width: 300px; height: auto; margin-inline: auto; border: 1px solid var(--rule); }
+.note { width: 100%; min-height: 168px; resize: vertical; font: 400 1rem/1.55 var(--text); color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 2px; padding: 12px; }
+.linkbox { width: 100%; font: 400 .8rem/1.4 ui-monospace, Menlo, Consolas, monospace; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 2px; padding: 10px; }
+.order { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; padding-block: 12px; border-block: 1px solid var(--rule); }
+.order dd { text-align: right; font-variant-numeric: tabular-nums; }
+.order .total { font-weight: 700; }
+.sheet-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 50; background: var(--ink); color: var(--on-ink); font: 500 .88rem/1.4 var(--ui); padding: 10px 16px; border-radius: 2px; max-width: calc(100vw - 32px); }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: minmax(0, 1fr); row-gap: 6px; }
+  .eyebrow { padding-top: 0; }
+  .mast-nav { gap: 2px 16px; }
+  .day { grid-template-columns: 3rem minmax(0, 1fr) auto; grid-template-rows: auto 1fr; column-gap: 12px; }
+  .day .sky { grid-column: 1; grid-row: 2; grid-auto-flow: column; align-items: center; gap: 6px; padding-top: 6px; }
+  .day .body { grid-column: 2; grid-row: 1 / span 2; }
+  .day > .btn { grid-column: 3; grid-row: 1; }
+  .leaf .day { grid-template-columns: 3rem minmax(0, 1fr); }
+  .entry dt { font-size: 1.2rem; }
+  .row .when-born, .row .since, .row .rel { max-width: none; }
+}
+
+@media print {
+  :root { --paper: #fff; --page: #fff; --ink: #111; --ink-soft: #444; --rule: #bbb; --red: #a3180c; }
+  body { background: #fff; font-size: 11.5pt; }
+  .no-print, .mast, .notice, .foot, .skip, .toast, .sheet, main > .band:not(.edition-band) { display: none !important; }
+  .edition-band { border: 0; padding: 0; }
+  .wrap { max-width: none; padding: 0; }
+  .grid { display: block; }
+  .pages { display: block; margin: 0; }
+  .leaf { border: 0; padding: 0 0 18pt; break-inside: avoid; }
+  .cover { break-after: page; padding-block: 30vh 0; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#finder">Skip to the finder</a>
+
+<div class="notice" id="previewBar" hidden>
+  <div class="wrap"><strong>Preview build.</strong> Checkout is simulated here: no card is asked for and nothing is charged.</div>
+</div>
+<div class="notice gift" id="giftBar" hidden>
+  <div class="wrap"><span id="giftBarText"></span> <button type="button" class="link" id="giftOwn">Start your own</button></div>
+</div>
+
+<header class="mast">
+  <div class="wrap mast-in">
+    <a class="wordmark" href="#top" aria-label="Almanac of Us, top of page">Almanac <i>of</i> Us</a>
+    <nav class="mast-nav" aria-label="Sections">
+      <a href="#almanac">Your days</a>
+      <a href="#days">What we count</a>
+      <a href="#price" class="paid-only">Price</a>
+      <a href="#questions">Questions</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="band hero" id="finder" aria-labelledby="thesis">
+    <div class="wrap grid">
+      <p class="gutter eyebrow">The idea</p>
+      <div class="col">
+        <h1 id="thesis">There is one day when you are exactly the age your mother was when you were born.</h1>
+        <p class="lede">On that same day she is exactly twice your age, and has spent exactly half her life as your mother. It happens once, and no calendar marks it. This one does, along with every other day like it hiding in your family.</p>
+      </div>
+    </div>
+    <div class="wrap grid finder">
+      <p class="gutter eyebrow" id="whoLabel">Who</p>
+      <form class="col people" id="people" novalidate aria-labelledby="whoLabel">
+        <div id="rows"></div>
+        <div class="people-foot">
+          <button type="submit" class="btn" id="findBtn">Show our days</button>
+          <button type="button" class="btn ghost" id="addPerson">Add someone</button>
+          <p class="hint">Birthdays stay in this browser. Nothing is uploaded.</p>
+        </div>
+        <p class="form-error" id="formError" role="alert" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="band result" id="result" aria-live="polite" aria-label="Your day"></section>
+
+  <section class="band" id="almanac" aria-labelledby="almanacH">
+    <div class="wrap grid">
+      <p class="gutter eyebrow">Your days</p>
+      <div class="col">
+        <h2 id="almanacH">Every hidden day, in order</h2>
+        <p class="sub" id="almanacSub"></p>
+        <div class="tabs" role="tablist" aria-label="Which days to show">
+          <button type="button" role="tab" id="tabNext" aria-controls="timeline" aria-selected="true">Next ten years</button>
+          <button type="button" role="tab" id="tabPast" aria-controls="timeline" aria-selected="false">Already happened</button>
+        </div>
+        <div id="timeline" role="tabpanel" aria-labelledby="tabNext"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="days" aria-labelledby="daysH">
+    <div class="wrap grid">
+      <p class="gutter eyebrow">What we count</p>
+      <div class="col">
+        <h2 id="daysH">Twelve kinds of day that no calendar prints</h2>
+        <p class="sub">Each one is plain arithmetic on birthdays, and each one happens to a family exactly once.</p>
+      </div>
+    </div>
+    <dl class="wrap catalog">
+      <div class="grid entry"><dt class="gutter">Echo Day</dt><dd class="col">A child reaches the exact age their parent was on the day the child was born. On that day the parent is exactly twice the child&rsquo;s age, and has been a parent for half a lifetime.</dd></div>
+      <div class="grid entry"><dt class="gutter">Half-Life Day</dt><dd class="col">You have known someone for exactly half your life. From the next morning on, you have had them longer than you were without them.</dd></div>
+      <div class="grid entry"><dt class="gutter">Century Day</dt><dd class="col">Two people&rsquo;s ages add up to exactly one hundred.</dd></div>
+      <div class="grid entry"><dt class="gutter">Triple Day, Tenfold Day</dt><dd class="col">The single day one person is exactly three, ten or a hundred times as old as another. A new father is a thousand times his daughter&rsquo;s age a week or two after she is born.</dd></div>
+      <div class="grid entry"><dt class="gutter">Add-Up Day</dt><dd class="col">The children&rsquo;s ages add up to exactly their parent&rsquo;s.</dd></div>
+      <div class="grid entry"><dt class="gutter">Myriad Day</dt><dd class="col">Ten thousand days, alive or together. It arrives at 27 years and about four and a half months.</dd></div>
+      <div class="grid entry"><dt class="gutter">Billion Day</dt><dd class="col">One billion seconds, alive or together: 31 years and about eight months.</dd></div>
+      <div class="grid entry"><dt class="gutter">Kilodays</dt><dd class="col">Every thousand days. One comes round every two years and nine months or so, which means it never lands on the same date twice.</dd></div>
+      <div class="grid entry"><dt class="gutter">Planet birthdays</dt><dd class="col">A birthday each time another planet finishes a lap of the Sun since you were born. The first on Jupiter comes just before you turn 12, and the first on Saturn at 29 and a half.</dd></div>
+      <div class="grid entry"><dt class="gutter">A thousand moons</dt><dd class="col">A thousand lunar months, reached a few weeks before the 81st birthday.</dd></div>
+      <div class="grid entry"><dt class="gutter">Golden birthday</dt><dd class="col">Turning 14 on the 14th, or 30 on the 30th: the one birthday when age and date agree.</dd></div>
+      <div class="grid entry"><dt class="gutter">Overtake Day</dt><dd class="col">The day the dog or the cat becomes older than you, by the vets&rsquo; rule of thumb for animal years.</dd></div>
+    </dl>
+  </section>
+
+  <section class="band" id="price" aria-labelledby="priceH">
+    <div class="wrap grid free-only">
+      <p class="gutter eyebrow">Price</p>
+      <div class="col">
+        <h2>Free. All of it.</h2>
+        <p class="sub">It is arithmetic on birthdays, and anyone could do it by hand, so it costs nothing. There is no account, and nothing you type leaves your browser.</p>
+      </div>
+    </div>
+    <div class="wrap grid paid-only">
+      <p class="gutter eyebrow">Price</p>
+      <div class="col">
+        <h2 id="priceH">The first days are free. The whole almanac is <span id="priceInline">$12</span>, once.</h2>
+        <ul class="gets">
+          <li><b>Every hidden day</b> for up to twelve people and pets: all the ones you have already had, and the next ten years of them.</li>
+          <li><b>A private calendar link</b> for Apple, Google and Outlook. Each day arrives on your phone by itself, with a week&rsquo;s notice before the big ones.</li>
+          <li><b>A printable almanac</b> for the coming year, with your family&rsquo;s name on the cover.</li>
+          <li><b>A link to give it away.</b> Build an almanac for someone else&rsquo;s family and send it. They open it without paying or signing up.</li>
+          <li><b>No subscription and no account.</b> If it isn&rsquo;t for you, ask within 14 days and the money comes back.</li>
+        </ul>
+        <div class="buy">
+          <button type="button" class="btn red" id="unlockBtn">Unlock the whole almanac</button>
+          <button type="button" class="link" id="restoreBtn" hidden>I already have a key</button>
+          <p class="hint" id="unlockState"></p>
+        </div>
+      </div>
+    </div>
+    <div class="wrap grid owned" id="owned" hidden>
+      <p class="gutter eyebrow">Yours</p>
+      <div class="col">
+        <div class="owned-actions">
+          <button type="button" class="btn" id="calBtn">Put it in my calendar</button>
+          <button type="button" class="btn ghost" id="giftBtn">Get a link to send it</button>
+        </div>
+        <p class="hint" id="ownedHint"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band edition-band" id="edition" aria-labelledby="editionH">
+    <div class="wrap grid no-print">
+      <p class="gutter eyebrow">The printed year</p>
+      <div class="col">
+        <h2 id="editionH">The almanac for <span id="editionYearText"></span></h2>
+        <p class="sub" id="editionSub"></p>
+        <div class="edition-tools">
+          <label class="f inline"><span>Name on the cover</span><input type="text" id="coverTitle" maxlength="40" placeholder="The Riveras" autocomplete="off"></label>
+          <label class="f inline"><span>Year</span><select id="editionYear"></select></label>
+          <button type="button" class="btn ghost" id="printBtn" hidden>Print or save as PDF</button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap grid">
+      <p class="gutter no-print"></p>
+      <div class="col"><div class="pages" id="pages"></div></div>
+    </div>
+  </section>
+
+  <section class="band" id="questions" aria-labelledby="questionsH">
+    <div class="wrap grid">
+      <p class="gutter eyebrow">Questions</p>
+      <div class="col">
+        <h2 id="questionsH">Fair things to ask</h2>
+        <div class="faq">
+          <details><summary>How exact are the dates?</summary><p>Exact to the day. Ages are counted in whole days from each birthday, the way a calendar counts them. The few days that depend on the hour of birth, such as a billionth second, say so beside the date.</p></details>
+          <details class="free-only"><summary>Where do my family&rsquo;s birthdays go?</summary><p>Nowhere. Everything is worked out inside your browser and there is no server behind this page. If you make a link to send, the names and dates are written into that link, so only share it with the people it is for.</p></details>
+          <details class="free-only"><summary>Is it really free?</summary><p>Yes. No payment, no account, no ads. The code is open for anyone to read or reuse.</p></details>
+          <details class="paid-only"><summary>Where do my family&rsquo;s birthdays go?</summary><p>Nowhere. Everything on this page is worked out inside your browser. If you buy the almanac and switch on the calendar link, the names and dates are encrypted into the link itself and our server forgets them. There is no database of families to lose.</p></details>
+          <details><summary>What if someone has died?</summary><p>Tick &ldquo;no longer with us&rdquo; beside their name. The almanac stops counting their days and keeps only the ones that are about you, such as the day you reach the age your father was when you were born.</p></details>
+          <details><summary>Can I give one as a gift?</summary><p>Yes. Build the almanac for their family, then send the link or print the year&rsquo;s edition. They open it without signing up for anything.</p></details>
+          <details class="paid-only"><summary>Is it a subscription?</summary><p>No. You pay once and the calendar link keeps rolling forward by itself.</p></details>
+          <details><summary>Why is it called an Echo Day?</summary><p>It had no name, so we gave it one. You arrive at the exact age your parent was at the moment you arrived, one generation later.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap grid">
+    <p class="gutter wordmark small">Almanac <i>of</i> Us</p>
+    <div class="col">
+      <p>For people who like their sentiment worked out to the day.</p>
+      <p class="hint free-only">Free to use, and the code is open.</p>
+    </div>
+  </div>
+</footer>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sheetTitle">
+  <div class="sheet-in">
+    <div class="sheet-head">
+      <h3 id="sheetTitle"></h3>
+      <button type="button" class="icon-btn" id="sheetClose" aria-label="Close">&times;</button>
+    </div>
+    <div id="sheetBody"></div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script>
+(function () {
+'use strict';
+/* Almanac of Us: the date engine.
+   Pure functions only: no DOM, no network, no storage. The page and the Worker both run this
+   file, so the screen, the printed almanac and the calendar feed can never disagree on a date.
+   Every date is a whole UTC day number (days since 1970-01-01). */
+
+const DAY_MS = 86400000;
+const MAX_PEOPLE = 12;
+const FREE_PEOPLE = 2;
+const PRICE_CENTS = 1200;
+const BRAND = 'Almanac of Us';
+
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+const RELATIONS = {
+  self: { label: 'Me', group: 'self', noun: '' },
+  mother: { label: 'Mother', group: 'parent', noun: 'mother' },
+  father: { label: 'Father', group: 'parent', noun: 'father' },
+  parent: { label: 'Parent', group: 'parent', noun: 'parent' },
+  daughter: { label: 'Daughter', group: 'child', noun: 'daughter' },
+  son: { label: 'Son', group: 'child', noun: 'son' },
+  child: { label: 'Child', group: 'child', noun: 'child' },
+  partner: { label: 'Partner or spouse', group: 'partner', noun: 'partner', since: true },
+  sister: { label: 'Sister', group: 'sibling', noun: 'sister' },
+  brother: { label: 'Brother', group: 'sibling', noun: 'brother' },
+  sibling: { label: 'Sibling', group: 'sibling', noun: 'sibling' },
+  grandmother: { label: 'Grandmother', group: 'grandparent', noun: 'grandmother' },
+  grandfather: { label: 'Grandfather', group: 'grandparent', noun: 'grandfather' },
+  grandparent: { label: 'Grandparent', group: 'grandparent', noun: 'grandparent' },
+  granddaughter: { label: 'Granddaughter', group: 'grandchild', noun: 'granddaughter' },
+  grandson: { label: 'Grandson', group: 'grandchild', noun: 'grandson' },
+  grandchild: { label: 'Grandchild', group: 'grandchild', noun: 'grandchild' },
+  friend: { label: 'Friend', group: 'friend', noun: 'friend', since: true },
+  dog: { label: 'Dog', group: 'pet', noun: 'dog', since: true },
+  cat: { label: 'Cat', group: 'pet', noun: 'cat', since: true }
+};
+const RELATION_ORDER = ['mother', 'father', 'parent', 'daughter', 'son', 'child', 'partner', 'sister', 'brother', 'sibling',
+  'grandmother', 'grandfather', 'grandparent', 'granddaughter', 'grandson', 'grandchild', 'friend', 'dog', 'cat'];
+
+/* ---------- calendar arithmetic ---------- */
+
+function pad2(n) { return n < 10 ? '0' + n : '' + n; }
+function num(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+function ordinal(n) { const s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
+function isLeap(y) { return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0; }
+function daysInMonth(y, m) { return [31, isLeap(y) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][m - 1]; }
+function dn(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / DAY_MS); }
+function parts(n) {
+  const t = new Date(n * DAY_MS);
+  return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate(), w: t.getUTCDay() };
+}
+function parseDate(s) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s == null ? '' : s));
+  if (!m) return null;
+  const y = +m[1], mo = +m[2], d = +m[3];
+  if (y < 1850 || y > 2150 || mo < 1 || mo > 12 || d < 1 || d > daysInMonth(y, mo)) return null;
+  return dn(y, mo, d);
+}
+function iso(n) { const p = parts(n); return p.y + '-' + pad2(p.m) + '-' + pad2(p.d); }
+function todayDN(now) { const t = now || new Date(); return dn(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function fmtDate(n) { const p = parts(n); return MONTHS[p.m - 1] + ' ' + p.d + ', ' + p.y; }
+function fmtLong(n) { const p = parts(n); return WEEKDAYS[p.w] + ', ' + MONTHS[p.m - 1] + ' ' + p.d + ', ' + p.y; }
+
+/* A leap-day birthday lands on March 1 in common years: the first day a full year has passed. */
+function addYears(n, k) {
+  const p = parts(n), y = p.y + k;
+  if (p.m === 2 && p.d === 29 && !isLeap(y)) return dn(y, 3, 1);
+  return dn(y, p.m, p.d);
+}
+function addMonths(n, k) {
+  const p = parts(n), total = p.y * 12 + (p.m - 1) + k;
+  const y = Math.floor(total / 12), m = (total % 12) + 1;
+  return dn(y, m, Math.min(p.d, daysInMonth(y, m)));
+}
+function wholeYears(b, day) {
+  if (day <= b) return 0;
+  let k = Math.floor((day - b) / 365.2425);
+  while (addYears(b, k + 1) <= day) k++;
+  while (k > 0 && addYears(b, k) > day) k--;
+  return k;
+}
+/* Age as a continuous number of years: whole birthdays plus the fraction of the current one. */
+function ageYears(b, day) {
+  if (day <= b) return 0;
+  const k = wholeYears(b, day), s = addYears(b, k), e = addYears(b, k + 1);
+  return k + (day - s) / (e - s);
+}
+function ageYMD(b, day) {
+  if (day <= b) return { y: 0, m: 0, d: 0 };
+  const y = wholeYears(b, day), anchor = addYears(b, y);
+  let m = 0;
+  while (m < 11 && addMonths(anchor, m + 1) <= day) m++;
+  return { y: y, m: m, d: day - addMonths(anchor, m) };
+}
+function joinList(xs) {
+  if (xs.length <= 1) return xs.join('');
+  return xs.slice(0, -1).join(', ') + ' and ' + xs[xs.length - 1];
+}
+function ymdText(a) {
+  const bits = [];
+  if (a.y) bits.push(a.y + (a.y === 1 ? ' year' : ' years'));
+  if (a.m) bits.push(a.m + (a.m === 1 ? ' month' : ' months'));
+  if (a.d || !bits.length) bits.push(a.d + (a.d === 1 ? ' day' : ' days'));
+  return joinList(bits);
+}
+function untilText(today, day) {
+  const diff = day - today;
+  if (diff === 0) return 'today';
+  if (diff === 1) return 'tomorrow';
+  if (diff === -1) return 'yesterday';
+  const a = diff > 0 ? ageYMD(today, day) : ageYMD(day, today);
+  let body;
+  if (Math.abs(diff) < 61) body = Math.abs(diff) + ' days';
+  else if (a.y === 0) body = ymdText({ y: 0, m: a.m, d: a.d });
+  else body = ymdText({ y: a.y, m: a.m, d: 0 });
+  return diff > 0 ? 'in ' + body : body + ' ago';
+}
+/* Mean phase of the Moon at midday: 0 new, 0.5 full. Good to about half a day. */
+function moonPhase(day) {
+  const lunation = 29.530588853, ref = 10962.76; // new moon of 2000-01-06 18:14 UTC
+  const f = ((day + 0.5 - ref) / lunation) % 1;
+  return f < 0 ? f + 1 : f;
+}
+
+/* ---------- people ---------- */
+
+function cleanName(s, max) {
+  return String(s == null ? '' : s).replace(/[\u0000-\u001f\u007f<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, max || 24);
+}
+function poss(name) { return name + (/s$/i.test(name) ? '\u2019' : '\u2019s'); }
+
+/* Turns raw form rows into a checked family. Errors are written for the person filling in the form. */
+function normalizeFamily(raw, today) {
+  const errors = [];
+  const rows = raw && Array.isArray(raw.people) ? raw.people.slice(0, MAX_PEOPLE) : [];
+  const people = [];
+  rows.forEach(function (r, i) {
+    const rel = r && RELATIONS[r.rel] ? r.rel : null;
+    const name = cleanName(r && r.name);
+    const b = parseDate(r && r.birth);
+    if (!rel) { errors.push({ i: i, field: 'rel', msg: 'Choose how this person is related to you.' }); return; }
+    if (!name) { errors.push({ i: i, field: 'name', msg: 'Add a first name or a nickname.' }); return; }
+    if (b == null) { errors.push({ i: i, field: 'birth', msg: r && r.birth ? 'Check ' + poss(name) + ' date of birth. That day isn’t on the calendar.' : 'Add ' + poss(name) + ' full date of birth.' }); return; }
+    if (today != null && b > today) { errors.push({ i: i, field: 'birth', msg: poss(name) + ' birthday is in the future.' }); return; }
+    const R = RELATIONS[rel];
+    let since = null;
+    if (R.since && r.since) {
+      since = parseDate(r.since);
+      if (since == null) errors.push({ i: i, field: 'since', msg: 'That \u201ctogether since\u201d date isn\u2019t a real date.' });
+    }
+    people.push({
+      id: i, name: name, rel: rel, group: R.group, noun: R.noun, kind: R.group === 'pet' ? 'pet' : 'person',
+      b: b, birth: iso(b), since: since, gone: !!(r && r.gone) && rel !== 'self'
+    });
+  });
+  const selves = people.filter(function (p) { return p.rel === 'self'; });
+  const self = selves.length === 1 ? selves[0] : null;
+  if (!self) errors.push({ i: -1, field: 'self', msg: 'An almanac starts with you: add your own name and birthday.' });
+  if (self) people.forEach(function (p) {
+    if (p === self) return;
+    if ((p.group === 'parent' || p.group === 'grandparent') && p.b >= self.b) {
+      errors.push({ i: p.id, field: 'birth', msg: p.name + ' is listed as your ' + p.noun + ', so should be born before you. Check the years.' });
+    }
+    if ((p.group === 'child' || p.group === 'grandchild') && p.b <= self.b) {
+      errors.push({ i: p.id, field: 'birth', msg: p.name + ' is listed as your ' + p.noun + ', so should be born after you. Check the years.' });
+    }
+    if (p.since != null) {
+      if (p.since < Math.max(p.b, self.b)) errors.push({ i: p.id, field: 'since', msg: '\u201cTogether since\u201d can\u2019t be earlier than either birthday.' });
+      else if (today != null && p.since > today) errors.push({ i: p.id, field: 'since', msg: '\u201cTogether since\u201d can\u2019t be in the future.' });
+    }
+  });
+  return { ok: errors.length === 0, errors: errors, family: { title: cleanName(raw && raw.title, 40), people: people, self: self } };
+}
+
+/* Compact form used inside sealed calendar links. */
+function packFamily(fam) {
+  return JSON.stringify({ t: fam.title || '', p: fam.people.map(function (p) { return [p.name, p.birth, p.rel, p.since != null ? iso(p.since) : '', p.gone ? 1 : 0]; }) });
+}
+function unpackFamily(text) {
+  let o;
+  try { o = JSON.parse(text); } catch (e) { return null; }
+  if (!o || !Array.isArray(o.p)) return null;
+  return { title: o.t || '', people: o.p.map(function (r) { return { name: r[0], birth: r[1], rel: r[2], since: r[3] || '', gone: !!r[4] }; }) };
+}
+
+/* ---------- the days ---------- */
+
+const WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+const FOLD = { 3: 'Triple Day', 4: 'Fourfold Day', 5: 'Fivefold Day', 6: 'Sixfold Day', 7: 'Sevenfold Day', 8: 'Eightfold Day', 9: 'Ninefold Day', 10: 'Tenfold Day', 15: 'Fifteenfold Day', 20: 'Twentyfold Day', 25: 'Twenty-Fivefold Day', 50: 'Fiftyfold Day', 100: 'Hundredfold Day', 1000: 'Thousandfold Day' };
+const SHARE = { 3: 'a third', 4: 'a quarter', 5: 'a fifth', 6: 'a sixth', 7: 'a seventh', 8: 'an eighth', 9: 'a ninth', 10: 'a tenth' };
+const PLANETS = [
+  { name: 'Mercury', period: 87.9691, lap: '88 days', counts: [50, 100, 150, 200, 250, 300, 350, 400] },
+  { name: 'Venus', period: 224.701, lap: '225 days', counts: [10, 25, 50, 75, 100, 125, 150] },
+  { name: 'Mars', period: 686.98, lap: '687 days', counts: [1, 5, 10, 15, 18, 20, 21, 25, 30, 35, 40, 45, 50] },
+  { name: 'Jupiter', period: 4332.589, lap: 'just under 12 years', counts: [1, 2, 3, 4, 5, 6, 7, 8] },
+  { name: 'Saturn', period: 10759.22, lap: 'about 29 and a half years', counts: [1, 2, 3] },
+  { name: 'Uranus', period: 30688.5, lap: '84 years', counts: [1] }
+];
+const YEAR = 365.2425;
+
+function times(k) { return k <= 12 ? WORDS[k] : num(k); }
+function nth(k) { return ['', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth'][k] || ordinal(k); }
+
+function ev(day, type, weight, label, title, text, who, param, extra) {
+  const e = {
+    dn: day, type: type, weight: weight, label: label, title: title, text: text,
+    who: who.map(function (p) { return p.id; }),
+    key: type + ':' + who.map(function (p) { return p.id; }).join('+') + ':' + param
+  };
+  if (extra) for (const k in extra) e[k] = extra[k];
+  return e;
+}
+
+function soloEvents(p, out) {
+  const n = p.name, b = p.b, P = [p];
+  for (let d = 1000; d <= 40000; d += 1000) {
+    const span = ymdText(ageYMD(b, b + d));
+    if (d === 10000) out.push(ev(b + d, 'myriad', 80, 'Myriad Day', 'Myriad Day: ' + n + ' is 10,000 days old', n + ' has been alive for exactly 10,000 days, which the ancient Greeks counted as one myriad. It comes to ' + span + '.', P, d));
+    else out.push(ev(b + d, 'kiloday', d % 5000 === 0 ? 62 : 48, 'kiloday', n + ' is ' + num(d) + ' days old', num(d) + ' days since ' + n + ' was born: ' + span + '.', P, d));
+  }
+  [11111, 12345, 22222, 33333].forEach(function (d) {
+    out.push(ev(b + d, 'odometer', 50, 'Odometer Day', 'Odometer Day: ' + n + ' is ' + num(d) + ' days old', 'The day-counter rolls over to ' + num(d) + ' for ' + n + ': ' + ymdText(ageYMD(b, b + d)) + '.', P, d));
+  });
+  for (let w = 1000; w <= 5000; w += 1000) {
+    out.push(ev(b + w * 7, 'weeks', 46, 'thousand-week day', n + ' is ' + num(w) + ' weeks old', 'Exactly ' + num(w) + ' weeks since ' + n + ' was born. It falls on a ' + WEEKDAYS[parts(b).w] + ', the day of the week ' + n + ' arrived.', P, w));
+  }
+  [100, 250, 500, 750, 1000].forEach(function (m) {
+    out.push(ev(addMonths(b, m), 'months', m >= 500 ? 50 : 42, 'month count', n + ' is ' + num(m) + ' months old', num(m) + ' months to the day since ' + n + ' was born.', P, m));
+  });
+  [[5e8, 'half a billion', 46], [1e9, 'a billion', 78], [2e9, 'two billion', 74], [3e9, 'three billion', 70]].forEach(function (s) {
+    const days = Math.floor(s[0] / 86400), rem = s[0] - days * 86400;
+    const h = Math.floor(rem / 3600), mi = Math.floor((rem % 3600) / 60), se = rem % 60;
+    const offset = joinList([h + (h === 1 ? ' hour' : ' hours'), mi + ' minutes', se + ' seconds'].filter(function (x) { return x.charAt(0) !== '0'; }));
+    out.push(ev(b + days, 'seconds', s[2], s[0] === 1e9 ? 'Billion Day' : 'second count',
+      (s[0] === 1e9 ? 'Billion Day: ' : '') + n + ' is ' + s[1] + ' seconds old',
+      n + ' passes ' + s[1] + ' seconds alive. The exact moment comes ' + num(days) + ' days, ' + offset + ' after ' + n + ' was born, so a birth late in the evening tips it just past midnight.', P, s[0], { approx: true }));
+  });
+  [[1e5, 40], [2.5e5, 44], [5e5, 48], [7.5e5, 44]].forEach(function (h) {
+    out.push(ev(b + Math.floor(h[0] / 24), 'hours', h[1], 'hour count', n + ' is ' + num(h[0]) + ' hours old', n + ' passes ' + num(h[0]) + ' hours alive today, give or take the hour of birth.', P, h[0], { approx: true }));
+  });
+  [[1e6, 'a million', 46], [1e7, 'ten million', 44], [2.5e7, '25 million', 40]].forEach(function (m) {
+    out.push(ev(b + Math.floor(m[0] / 1440), 'minutes', m[2], 'minute count', n + ' is ' + m[1] + ' minutes old', n + ' passes ' + m[1] + ' minutes alive today, give or take the hour of birth.', P, m[0], { approx: true }));
+  });
+  PLANETS.forEach(function (pl) {
+    pl.counts.forEach(function (c) {
+      let w = 36;
+      if (pl.name === 'Saturn') w = 72; else if (pl.name === 'Uranus') w = 70; else if (pl.name === 'Jupiter') w = 58;
+      else if (pl.name === 'Mars') w = c === 21 ? 56 : 42; else if (c === 100) w = 44;
+      out.push(ev(b + Math.round(c * pl.period), 'planet', w, pl.name + ' birthday',
+        poss(n) + ' ' + nth(c) + ' ' + pl.name + ' birthday',
+        c === 1 ? pl.name + ' has gone around the Sun exactly once since ' + n + ' was born. One lap takes it ' + pl.lap + '.'
+          : pl.name + ' has circled the Sun ' + (c === 2 ? 'twice' : times(c) + ' times') + ' since ' + n + ' was born. Each lap takes ' + pl.lap + '.', P, pl.name + c, { planet: pl.name }));
+    });
+  });
+  [100, 250, 500, 750, 1000].forEach(function (m) {
+    out.push(ev(b + Math.round(m * 29.530588853), 'moons', m === 1000 ? 70 : (m === 500 ? 56 : 44), m === 1000 ? 'Thousand Moons' : 'moon count',
+      m === 1000 ? 'A thousand moons: ' + n : n + ' is ' + m + ' moons old',
+      n + ' has lived through ' + num(m) + ' lunar months, each about 29 and a half days from new moon to new moon.' + (m === 1000 ? ' In parts of India, living to see a thousand full moons is honoured with a ceremony, Sahasra Chandra Darshan.' : ''), P, m));
+  });
+  const born = parts(b);
+  out.push(ev(addYears(b, born.d), 'golden', 60, 'golden birthday', 'Golden birthday: ' + n + ' turns ' + born.d + ' on the ' + ordinal(born.d), 'The one birthday when the age matches the date. It happens once in a lifetime.', P, 'g1'));
+  if (born.d * 2 <= 62) out.push(ev(addYears(b, born.d * 2), 'golden', 44, 'double golden birthday', 'Double golden birthday: ' + n + ' turns ' + born.d * 2 + ' on the ' + ordinal(born.d), 'Twice the date, on the date. It happens once in a lifetime.', P, 'g2'));
+  const yy = born.y % 100;
+  if (yy > 0) out.push(ev(addYears(b, yy), 'beddian', 52, 'Beddian birthday', 'Beddian birthday: ' + n + ' turns ' + yy, n + ' was born in ' + born.y + ' and turns ' + yy + ': the age matches the last two digits of the birth year. It is named after Bobby Beddia, a New York firefighter who noticed his own.', P, 'bed'));
+}
+
+/* Age pairs. E is the elder, Y the younger. `lineage` means E has been in Y's life from the start
+   as a parent or grandparent; `role` is what E is to Y. */
+function pairAgeEvents(pr, out) {
+  const E = pr.E, Y = pr.Y, g = Y.b - E.b;
+  if (g < 1 || Y.gone) return;
+  const en = E.name, yn = Y.name, both = [Y, E];
+  const echo = Y.b + g, echoAge = ymdText(ageYMD(Y.b, echo));
+  const elderPresent = !E.gone && 2 * g <= 105 * YEAR;
+  let text;
+  if (!elderPresent) text = yn + ' is exactly the age ' + en + ' was on the day ' + yn + ' was born: ' + echoAge + '.';
+  else if (pr.lineage) text = yn + ' is exactly the age ' + en + ' was on the day ' + yn + ' was born. ' + en + ' is exactly twice ' + poss(yn) + ' age, and has spent exactly half a lifetime as ' + poss(yn) + ' ' + pr.role + '.';
+  else text = yn + ' is exactly the age ' + en + ' was on the day ' + yn + ' was born, which makes ' + en + ' exactly twice as old as ' + yn + '. It is true for one day.';
+  out.push(ev(echo, 'echo', pr.lineage ? 100 : 44, 'Echo Day', 'Echo Day: ' + yn + ' and ' + en, text, both, 'k2',
+    { need: [Y.id], elder: E.id, younger: Y.id, gap: g, age: echoAge, lineage: !!pr.lineage, role: pr.role || '', full: elderPresent }));
+
+  if (2 * g <= 105 * YEAR) {
+    out.push(ev(Y.b + 2 * g, 'halfagain', pr.lineage ? 64 : 40, 'Half-Again Day', 'Half-Again Day: ' + yn + ' and ' + en,
+      E.gone || 3 * g > 105 * YEAR ? yn + ' is now twice the age ' + en + ' was on the day ' + yn + ' was born.'
+        : yn + ' is now twice the age ' + en + ' was on the day ' + yn + ' was born, and ' + en + ' is exactly one and a half times as old as ' + yn + '.',
+      both, 'k1.5', { need: [Y.id] }));
+  }
+  if (E.gone) return;
+  (pr.lineage ? [3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100, 1000] : [3, 4, 5, 10]).forEach(function (k) {
+    const off = Math.floor(g / (k - 1));
+    if (off < 1) return;
+    let w = 40;
+    if (pr.lineage) w = k <= 10 ? 68 : (k >= 100 ? 60 : 52);
+    out.push(ev(Y.b + off, 'multiple', w, FOLD[k], FOLD[k] + ': ' + en + ' is ' + times(k) + ' times ' + poss(yn) + ' age',
+      en + ' is exactly ' + times(k) + ' times as old as ' + yn + (pr.lineage && SHARE[k] ? ', and has spent exactly ' + SHARE[k] + ' of a lifetime as ' + poss(yn) + ' ' + pr.role : '') + '. It is true for one day.',
+      both, 'k' + k));
+  });
+}
+
+function sumDay(births, S) {
+  const start = Math.max.apply(null, births);
+  const total = function (d) { let t = 0; for (let i = 0; i < births.length; i++) t += ageYears(births[i], d); return t; };
+  if (total(start) >= S) return null;
+  let lo = start, hi = start + 40200;
+  if (total(hi) < S) return null;
+  while (hi - lo > 1) { const mid = (lo + hi) >> 1; if (total(mid) >= S) hi = mid; else lo = mid; }
+  return hi;
+}
+
+function pairSumEvents(pr, out) {
+  const A = pr.a, B = pr.b;
+  if (A.gone || B.gone) return;
+  const names = A.name + ' and ' + B.name, both = [A, B];
+  (pr.couple ? [40, 50, 60, 70, 75, 80, 90, 100, 110, 120, 125, 130, 140, 150] : [50, 75, 100, 125, 150, 175, 200]).forEach(function (S) {
+    const d = sumDay([A.b, B.b], S);
+    if (d == null) return;
+    if (S === 100) out.push(ev(d, 'sum', pr.couple ? 86 : 74, 'Century Day', 'Century Day: ' + names, 'Add their ages together and ' + names + ' are exactly 100 years old today. A century between them.', both, 's' + S));
+    else out.push(ev(d, 'sum', S % 50 === 0 ? 60 : 46, 'combined age', names + ' are ' + S + ' between them', 'Add their ages together and ' + names + ' are exactly ' + S + ' years old today.', both, 's' + S));
+  });
+  if (pr.couple) [20000, 25000, 30000, 40000, 50000].forEach(function (N) {
+    const d = Math.ceil((N + A.b + B.b) / 2);
+    if (d >= Math.max(A.b, B.b)) out.push(ev(d, 'sumdays', 40, 'combined days', names + ': ' + num(N) + ' days between them', 'Count every day each of them has been alive and the total reaches ' + num(N) + ' today.', both, 'n' + N));
+  });
+}
+
+/* Days counted from a shared starting date: the day two people met, married, or the day a pet came home. */
+function pairSinceEvents(pr, out) {
+  const A = pr.a, B = pr.b, s = pr.since;
+  if (s == null || A.gone || B.gone) return;
+  const pet = B.kind === 'pet', names = A.name + ' and ' + B.name, both = [A, B];
+  const from = pet ? 'since ' + B.name + ' came home' : 'since day one for ' + names;
+  [100, 500, 1000, 1500, 2000, 2500, 3000, 4000, 5000, 6000, 7000, 7500, 8000, 9000, 10000, 11111, 12345, 15000, 20000, 25000].forEach(function (N) {
+    const span = ymdText(ageYMD(s, s + N));
+    if (N === 10000) out.push(ev(s + N, 'tmyriad', 84, 'Myriad Day', 'Myriad Day: 10,000 days of ' + names, 'Ten thousand days ' + from + ', which the ancient Greeks counted as one myriad. It comes to ' + span + '.', both, 'td' + N));
+    else {
+      let w = 46;
+      if (N % 1000 === 0) w = N % 5000 === 0 ? 70 : 62; else if (N === 100 || N === 500 || N > 11000) w = 52;
+      out.push(ev(s + N, 'tdays', w, 'day count together', num(N) + ' days of ' + names, num(N) + ' days ' + from + ': ' + span + '.', both, 'td' + N));
+    }
+  });
+  [100, 500, 1000, 1500, 2000, 2500].forEach(function (w) {
+    out.push(ev(s + w * 7, 'tweeks', w === 1000 ? 55 : 44, 'week count together', num(w) + ' weeks of ' + names, 'Exactly ' + num(w) + ' weeks ' + from + '.', both, 'tw' + w));
+  });
+  [100, 200, 250, 300, 400, 500, 600, 700, 750].forEach(function (m) {
+    out.push(ev(addMonths(s, m), 'tmonths', m === 500 ? 55 : 44, 'month count together', m + ' months of ' + names, m + ' months to the day ' + from + '.', both, 'tm' + m));
+  });
+  [[1e4, 50, ' That is the figure usually quoted for mastering a craft.'], [5e4, 42, ''], [1e5, 50, ''], [2.5e5, 46, ''], [5e5, 50, '']].forEach(function (h) {
+    out.push(ev(s + Math.floor(h[0] / 24), 'thours', h[1], 'hour count together', num(h[0]) + ' hours of ' + names, num(h[0]) + ' hours ' + from + ', give or take a few.' + h[2], both, 'th' + h[0], { approx: true }));
+  });
+  [[1e8, '100 million', 46], [5e8, 'Half a billion', 50], [1e9, 'A billion', 80]].forEach(function (x) {
+    out.push(ev(s + Math.floor(x[0] / 86400), 'tseconds', x[2], x[0] === 1e9 ? 'Billion Day' : 'second count together',
+      (x[0] === 1e9 ? 'Billion Day: a' : x[1]) + (x[0] === 1e9 ? ' billion' : '') + ' seconds of ' + names, x[1] + ' seconds ' + from + ', to within a day.', both, 'ts' + x[0], { approx: true }));
+  });
+  /* The share of one person's life the other has been in it. */
+  const shares = [[1, 4, 'a quarter', 46], [1, 3, 'a third', 46], [1, 2, 'half', 92], [2, 3, 'two-thirds', 58], [3, 4, 'three-quarters', 58], [9, 10, 'nine-tenths', 60]];
+  (pet ? [A] : [A, B]).forEach(function (P) {
+    const O = P === A ? B : A;
+    shares.forEach(function (f) {
+      const d = Math.floor((f[1] * s - f[0] * P.b) / (f[1] - f[0]));
+      if (d <= s) return;
+      if (f[0] === 1 && f[1] === 2) {
+        out.push(ev(d, 'halflife', 92, 'Half-Life Day', 'Half-Life Day: ' + P.name + ' and ' + O.name,
+          pet ? O.name + ' has now been part of exactly half of ' + poss(P.name) + ' life. From tomorrow it is more than half.'
+            : P.name + ' has now shared exactly half a lifetime with ' + O.name + '. From tomorrow it is more than half.', [P, O], 'hl', { of: P.id }));
+      } else {
+        out.push(ev(d, 'lifeshare', f[3], 'share of a lifetime', P.name + ': ' + f[2] + ' of a lifetime with ' + O.name,
+          pet ? O.name + ' has now been part of exactly ' + f[2] + ' of ' + poss(P.name) + ' life.' : P.name + ' has now shared exactly ' + f[2] + ' of a lifetime with ' + O.name + '.', [P, O], 'ls' + f[0] + '-' + f[1], { of: P.id }));
+      }
+    });
+  });
+}
+
+/* The usual veterinary rule of thumb: 15 for the first year, 9 for the second, then 5 a year for a dog and 4 for a cat. */
+function petYears(species, ageDays) {
+  const y = ageDays / YEAR, step = species === 'cat' ? 4 : 5;
+  if (y <= 1) return 15 * y;
+  if (y <= 2) return 15 + 9 * (y - 1);
+  return 24 + step * (y - 2);
+}
+function petEvents(pet, humans, self, out) {
+  if (pet.gone) return;
+  const n = pet.name, sp = pet.rel, step = sp === 'cat' ? 4 : 5;
+  const rule = 'By the vets\u2019 rule of thumb: 15 ' + sp + ' years for the first year, 9 for the second and ' + step + ' for each year after.';
+  for (let d = 1000; d <= 7000; d += 1000) out.push(ev(pet.b + d, 'kiloday', 44, 'kiloday', n + ' is ' + num(d) + ' days old', num(d) + ' days since ' + n + ' was born: ' + ymdText(ageYMD(pet.b, pet.b + d)) + '.', [pet], d));
+  [18, 21, 30, 40, 50, 60, 70, 80, 90, 100].forEach(function (R) {
+    const y = R <= 15 ? R / 15 : (R <= 24 ? 1 + (R - 15) / 9 : 2 + (R - 24) / step);
+    out.push(ev(pet.b + Math.round(y * YEAR), 'petyears', 46, sp + ' years', n + ' turns ' + R + ' in ' + sp + ' years', rule, [pet], 'r' + R));
+  });
+  humans.forEach(function (h) {
+    if (h.gone || h.b >= pet.b) return;
+    let lo = pet.b, hi = pet.b + Math.round(22 * YEAR);
+    const ahead = function (d) { return petYears(sp, d - pet.b) >= ageYears(h.b, d); };
+    if (!ahead(hi)) return;
+    while (hi - lo > 1) { const mid = (lo + hi) >> 1; if (ahead(mid)) hi = mid; else lo = mid; }
+    const age = wholeYears(h.b, hi);
+    out.push(ev(hi, 'overtake', 70, 'Overtake Day', 'Overtake Day: ' + n + ' catches up with ' + h.name,
+      'In ' + sp + ' years, ' + n + ' is ' + age + ' today. So is ' + h.name + '. From tomorrow ' + n + ' is the elder. ' + rule, [pet, h], 'ot'));
+  });
+  if (pet.since != null && self) pairSinceEvents({ a: self, b: pet, since: pet.since }, out);
+}
+
+function familyEvents(fam, humans, out) {
+  const alive = humans.filter(function (p) { return !p.gone; });
+  if (alive.length >= 3) {
+    const births = alive.map(function (p) { return p.b; }), names = joinList(alive.map(function (p) { return p.name; }));
+    for (let S = 100; S <= 1000; S += 50) {
+      const d = sumDay(births, S);
+      if (d != null) out.push(ev(d, 'famsum', S % 100 === 0 ? 70 : 58, 'whole-family age', 'All together now: ' + S + ' years', 'Add up the ages of ' + names + ' and the total is exactly ' + S + ' years today.', alive, 'f' + S));
+    }
+  }
+  /* Add-Up Day: the children's ages total the parent's. */
+  const self = fam.self;
+  if (!self) return;
+  const groups = [];
+  const kids = alive.filter(function (p) { return p.group === 'child'; });
+  if (kids.length >= 2 && !self.gone) groups.push([self, kids]);
+  const sibs = alive.filter(function (p) { return p.group === 'sibling'; });
+  alive.filter(function (p) { return p.group === 'parent'; }).forEach(function (par) {
+    const brood = [self].concat(sibs).filter(function (c) { return c.b > par.b; });
+    if (brood.length >= 2) groups.push([par, brood]);
+  });
+  groups.forEach(function (gp) {
+    const par = gp[0], cs = gp[1];
+    let sum = 0, last = 0;
+    cs.forEach(function (c) { sum += c.b; last = Math.max(last, c.b); });
+    const d = Math.floor((sum - par.b) / (cs.length - 1));
+    if (d <= last) return;
+    out.push(ev(d, 'addup', 76, 'Add-Up Day', 'Add-Up Day: ' + par.name, 'The ages of ' + joinList(cs.map(function (c) { return c.name; })) + ' add up to exactly ' + poss(par.name) + ' age today.', [par].concat(cs), 'au'));
+  });
+}
+
+function buildPairs(fam) {
+  const self = fam.self, pairs = [];
+  if (!self) return pairs;
+  const humans = fam.people.filter(function (p) { return p.kind === 'person' && p !== self; });
+  humans.forEach(function (o) {
+    const elderIsOther = o.b <= self.b, E = elderIsOther ? o : self, Y = elderIsOther ? self : o;
+    let lineage = false, role = '';
+    if ((o.group === 'parent' || o.group === 'grandparent') && elderIsOther) { lineage = true; role = o.noun; }
+    if ((o.group === 'child' || o.group === 'grandchild') && !elderIsOther) { lineage = true; role = o.group === 'child' ? 'parent' : 'grandparent'; }
+    pairs.push({ E: E, Y: Y, a: self, b: o, lineage: lineage, role: role, since: o.since, couple: o.group === 'partner' });
+  });
+  ['child', 'grandchild'].forEach(function (grp) {
+    const set = humans.filter(function (p) { return p.group === grp; });
+    for (let i = 0; i < set.length; i++) for (let j = i + 1; j < set.length; j++) {
+      const E = set[i].b <= set[j].b ? set[i] : set[j], Y = E === set[i] ? set[j] : set[i];
+      pairs.push({ E: E, Y: Y, a: E, b: Y, lineage: false, role: '', since: null, couple: false });
+    }
+  });
+  const partner = humans.filter(function (p) { return p.group === 'partner'; })[0];
+  if (partner) humans.filter(function (p) { return p.group === 'child'; }).forEach(function (c) {
+    if (c.b > partner.b) pairs.push({ E: partner, Y: c, a: partner, b: c, lineage: false, role: '', since: null, couple: false });
+  });
+  const folks = humans.filter(function (p) { return p.group === 'parent'; });
+  if (folks.length === 2) pairs.push({ E: folks[0], Y: folks[1], a: folks[0], b: folks[1], sumOnly: true, since: null, couple: true });
+  return pairs;
+}
+
+/* Every hidden day for a family, earliest first. */
+function computeEvents(fam) {
+  const out = [];
+  const humans = fam.people.filter(function (p) { return p.kind === 'person'; });
+  humans.forEach(function (p) { if (!p.gone) soloEvents(p, out); });
+  buildPairs(fam).forEach(function (pr) {
+    if (!pr.sumOnly) pairAgeEvents(pr, out);
+    pairSumEvents(pr, out);
+    if (!pr.sumOnly && pr.since != null) pairSinceEvents(pr, out);
+  });
+  fam.people.filter(function (p) { return p.kind === 'pet'; }).forEach(function (pet) { petEvents(pet, humans, fam.self, out); });
+  familyEvents(fam, humans, out);
+
+  const byId = {};
+  fam.people.forEach(function (p) { byId[p.id] = p; });
+  const seen = {};
+  return out.filter(function (e) {
+    if (seen[e.key]) return false;
+    seen[e.key] = true;
+    return (e.need || e.who).every(function (id) {
+      const p = byId[id], age = e.dn - p.b;
+      return age >= 0 && age <= (p.kind === 'pet' ? 22 : 105) * YEAR;
+    });
+  }).sort(function (a, b) { return a.dn - b.dn || b.weight - a.weight; });
+}
+
+/* The one day to lead with for the first pair in a family. */
+function heroFor(fam, events, today) {
+  const self = fam.self;
+  if (!self) return null;
+  const o = fam.people.filter(function (p) { return p !== self; })[0];
+  if (!o) return null;
+  const shared = events.filter(function (e) { return e.who.indexOf(self.id) >= 0 && e.who.indexOf(o.id) >= 0; });
+  const echo = shared.filter(function (e) { return e.type === 'echo'; })[0];
+  if (echo && echo.lineage) return echo;
+  let best = null, bestScore = -1e9;
+  shared.forEach(function (e) {
+    if (e.dn < today || e.dn > today + 7305) return;
+    const score = e.weight - 1.5 * (e.dn - today) / YEAR;
+    if (score > bestScore) { bestScore = score; best = e; }
+  });
+  return best || echo || shared[shared.length - 1] || null;
+}
+
+/* ---------- calendar file ---------- */
+
+function icsText(s) { return String(s).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n'); }
+function icsDay(n) { const p = parts(n); return '' + p.y + pad2(p.m) + pad2(p.d); }
+function icsFold(line) {
+  const out = [];
+  let rest = line, width = 60;
+  while (rest.length > width) {
+    let cut = width;
+    const c = rest.charCodeAt(cut - 1);
+    if (c >= 0xd800 && c <= 0xdbff) cut -= 1;
+    out.push(rest.slice(0, cut));
+    rest = ' ' + rest.slice(cut);
+  }
+  out.push(rest);
+  return out.join('\r\n');
+}
+function buildICS(events, opts) {
+  const o = opts || {}, stamp = o.stamp || '20260101T000000Z';
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Almanac of Us//Hidden Days//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+    'X-WR-CALNAME:' + icsText(o.name || BRAND), 'X-WR-CALDESC:' + icsText('The red-letter days nobody else is counting.'),
+    'REFRESH-INTERVAL;VALUE=DURATION:P1D', 'X-PUBLISHED-TTL:P1D'];
+  const add = function (uid, day, summary, description) {
+    lines.push('BEGIN:VEVENT', 'UID:' + uid.replace(/[^A-Za-z0-9.]/g, '-') + '@almanacofus', 'DTSTAMP:' + stamp,
+      'DTSTART;VALUE=DATE:' + icsDay(day), 'DTEND;VALUE=DATE:' + icsDay(day + 1),
+      'SUMMARY:' + icsText(summary), 'DESCRIPTION:' + icsText(description), 'TRANSP:TRANSPARENT', 'END:VEVENT');
+  };
+  const tail = o.url ? '\n\n' + o.url : '';
+  events.forEach(function (e) {
+    add(e.key, e.dn, e.title, e.text + tail);
+    if (o.headsUp && e.weight >= 80) add('soon-' + e.key, e.dn - 7, 'In one week: ' + e.title, 'A week from today, on ' + fmtLong(e.dn) + ': ' + e.text + tail);
+  });
+  lines.push('END:VCALENDAR');
+  return lines.map(icsFold).join('\r\n') + '\r\n';
+}
+
+/* Almanac of Us: the page. The build puts core.js and this file inside one function,
+   so the engine's names (computeEvents, fmtLong and the rest) are in scope here. */
+
+const MODE = 'free';   // 'live' on the real site, 'preview' in the private preview
+const LIVE = MODE === 'live';
+const FREE = MODE === 'free';   // everything unlocked, no server at all
+const OWN = MODE !== 'preview';  // a real page of its own: plain downloads and printing work
+const SITE = '' || (location.host + location.pathname).replace(/\/(index\.html)?$/, '');
+const STORE = 'almanac-of-us:v1';
+const PRICE_TEXT = '$' + (PRICE_CENTS % 100 ? (PRICE_CENTS / 100).toFixed(2) : String(PRICE_CENTS / 100));
+const SVGNS = 'http://www.w3.org/2000/svg';
+
+const state = { rows: [], seq: 0, title: '', key: '', tab: 'next', year: 0, shared: null, lastHero: '' };
+let model = null;
+let downloads = null;
+
+/* ---------- small helpers ---------- */
+
+function $(id) { return document.getElementById(id); }
+function el(tag, attrs, kids) {
+  const node = document.createElement(tag);
+  if (attrs) for (const k in attrs) {
+    const v = attrs[k];
+    if (v == null || v === false) continue;
+    if (k === 'class') node.className = v;
+    else if (k === 'text') node.textContent = v;
+    else if (k.slice(0, 2) === 'on') node.addEventListener(k.slice(2), v);
+    else node.setAttribute(k, v === true ? '' : v);
+  }
+  if (kids != null) (Array.isArray(kids) ? kids : [kids]).forEach(function (c) {
+    if (c != null && c !== false) node.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+  });
+  return node;
+}
+function sv(tag, attrs, text) {
+  const n = document.createElementNS(SVGNS, tag);
+  if (attrs) for (const k in attrs) n.setAttribute(k, attrs[k]);
+  if (text != null) n.textContent = text;
+  return n;
+}
+function para(text, cls) { return el('p', { class: cls || null, text: text }); }
+
+let toastTimer = 0;
+function toast(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function () { t.hidden = true; }, 3400);
+}
+function openSheet(title, nodes) {
+  $('sheetTitle').textContent = title;
+  const body = $('sheetBody');
+  body.textContent = '';
+  nodes.forEach(function (n) { if (n) body.appendChild(n); });
+  const d = $('sheet');
+  if (!d.open) { try { d.showModal(); } catch (e) { d.setAttribute('open', ''); } }
+}
+function closeSheet() {
+  const d = $('sheet');
+  if (d.open) { try { d.close(); } catch (e) { d.removeAttribute('open'); } }
+}
+function copyText(text, done) {
+  const no = function () { toast('Select the text and copy it by hand.'); };
+  try { navigator.clipboard.writeText(text).then(function () { toast(done || 'Copied.'); }, no); } catch (e) { no(); }
+}
+function linkBox(value, label) {
+  return el('input', { class: 'linkbox', type: 'text', readonly: true, value: value, 'aria-label': label, onfocus: function (ev) { ev.target.select(); } });
+}
+
+/* Saving a file. Inside the preview the host has to offer the file, so we ask it to;
+   on the live site an ordinary download link does the job. */
+async function saveFile(filename, data) {
+  if (downloads) {
+    try { await downloads.save({ filename: filename, data: data }); toast('Saved.'); return; }
+    catch (err) { if (!err || err.code !== 'declined') toast('Saving isn’t available in this view.'); return; }
+  }
+  if (!LIVE && window.claude) { toast('Saving isn’t available in this view.'); return; }
+  const blob = data instanceof Blob ? data : new Blob([data]);
+  const url = URL.createObjectURL(blob);
+  const a = el('a', { href: url, download: filename });
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(function () { URL.revokeObjectURL(url); }, 5000);
+}
+
+async function call(path, body) {
+  const res = await fetch(path, body === undefined ? undefined : { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+  let data = null;
+  try { data = await res.json(); } catch (e) { data = null; }
+  if (!res.ok) {
+    const err = new Error((data && data.message) || 'Something went wrong on our side. Try again in a minute.');
+    err.code = data && data.error;
+    throw err;
+  }
+  return data;
+}
+
+/* ---------- state ---------- */
+
+function blankRow(rel) {
+  state.seq += 1;
+  return { uid: state.seq, name: '', rel: rel, bm: '', bd: '', by: '', sm: '', sd: '', sy: '', gone: false };
+}
+function loadState() {
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(STORE) || 'null'); } catch (e) { saved = null; }
+  if (saved && Array.isArray(saved.rows) && saved.rows.length >= 2 && saved.rows[0].rel === 'self') {
+    state.rows = saved.rows.slice(0, MAX_PEOPLE).filter(function (r) { return r && RELATIONS[r.rel]; });
+    state.seq = Math.max.apply(null, state.rows.map(function (r) { return +r.uid || 0; }).concat([+saved.seq || 0]));
+    state.title = typeof saved.title === 'string' ? saved.title : '';
+    state.key = typeof saved.key === 'string' && (LIVE || saved.key === 'PREVIEW') ? saved.key : '';
+  }
+  if (state.rows.length < 2) state.rows = [blankRow('self'), blankRow('mother')];
+}
+function saveState() {
+  try { localStorage.setItem(STORE, JSON.stringify({ rows: state.rows, seq: state.seq, title: state.title, key: state.key })); } catch (e) { /* private window: carry on without it */ }
+}
+function isoFrom(y, m, d) {
+  if (!/^\d{4}$/.test(y) || !m || !/^\d{1,2}$/.test(d)) return '';
+  return y + '-' + pad2(+m) + '-' + pad2(+d);
+}
+function rowRaw(r) {
+  const birth = isoFrom(r.by, r.bm, r.bd);
+  if (!cleanName(r.name) || !birth) return null;
+  return { name: r.name, rel: r.rel, birth: birth, since: isoFrom(r.sy, r.sm, r.sd), gone: !!r.gone };
+}
+function currentRaw() {
+  const filled = state.rows.map(rowRaw), others = filled.slice(1).filter(Boolean);
+  if (!filled[0] || !others.length) return null;
+  return { title: state.title, people: [filled[0]].concat(others) };
+}
+function exampleFamily(today) {
+  const mom = dn(1968, 6, 21), kid = Math.floor((today + 12 + mom) / 2);
+  return { title: '', people: [{ name: 'Ana', rel: 'self', birth: iso(kid) }, { name: 'Rosa', rel: 'mother', birth: iso(mom) }] };
+}
+
+function compute() {
+  const today = todayDN();
+  const raw = state.shared || currentRaw();
+  let res = raw ? normalizeFamily(raw, today) : null, example = false, problem = '';
+  if (res && !res.ok) { problem = res.errors[0].msg; res = null; }
+  if (!res) { res = normalizeFamily(exampleFamily(today), today); example = true; }
+  const fam = res.family, events = computeEvents(fam), byId = {};
+  fam.people.forEach(function (p) { byId[p.id] = p; });
+  const horizon = today + 3653;
+  const upcoming = events.filter(function (e) { return e.dn >= today && e.dn <= horizon; });
+  const past = events.filter(function (e) { return e.dn < today && e.weight >= 50; }).reverse();
+  const hero = heroFor(fam, events, today);
+  const unlocked = FREE || !!state.key || !!state.shared;
+  let free = [];
+  if (!unlocked) {
+    const heroAhead = !!hero && hero.dn >= today && hero.dn <= horizon;
+    free = upcoming.filter(function (e) { return !hero || e.key !== hero.key; }).slice(0, heroAhead ? 2 : 3);
+    if (heroAhead) free.push(hero);
+    free.sort(function (a, b) { return a.dn - b.dn; });
+  }
+  model = { today: today, fam: fam, events: events, byId: byId, horizon: horizon, upcoming: upcoming, past: past, hero: hero, example: example, problem: problem, unlocked: unlocked, free: free };
+}
+function isYou(p) { return !model.example && !state.shared && p === model.fam.self; }
+
+/* ---------- the people form ---------- */
+
+function triple(id, label, r, keys) {
+  const sel = el('select', { id: id + '-m', 'aria-label': label + ', month' },
+    [el('option', { value: '', text: 'Month' })].concat(MONTHS.map(function (m, i) { return el('option', { value: String(i + 1), text: m }); })));
+  sel.value = r[keys[0]];
+  const day = el('input', { id: id + '-d', type: 'text', inputmode: 'numeric', maxlength: '2', placeholder: 'Day', autocomplete: 'off', 'aria-label': label + ', day', value: r[keys[1]] });
+  const year = el('input', { id: id + '-y', type: 'text', inputmode: 'numeric', maxlength: '4', placeholder: 'Year', autocomplete: 'off', 'aria-label': label + ', year', value: r[keys[2]] });
+  sel.addEventListener('change', function () { r[keys[0]] = sel.value; changed(); });
+  day.addEventListener('input', function () { day.value = day.value.replace(/\D/g, ''); r[keys[1]] = day.value; changed(); });
+  year.addEventListener('input', function () { year.value = year.value.replace(/\D/g, ''); r[keys[2]] = year.value; changed(); });
+  return [el('span', { text: label }), el('div', { class: 'triple' }, [sel, day, year])];
+}
+function rowNode(r, i) {
+  const id = 'p' + r.uid, me = i === 0, R = RELATIONS[r.rel];
+  const row = el('fieldset', { class: 'row' }, [el('legend', { class: 'sr', text: me ? 'You' : 'Person ' + (i + 1) })]);
+  const name = el('input', { id: id + '-name', type: 'text', maxlength: '24', autocomplete: 'off', placeholder: me ? 'Ana' : 'Rosa', value: r.name });
+  name.addEventListener('input', function () { r.name = name.value; changed(); });
+  row.appendChild(el('label', { class: 'f name' }, [el('span', { text: me ? 'Your first name' : 'Their first name' }), name]));
+  if (!me) {
+    const rel = el('select', { id: id + '-rel' }, RELATION_ORDER.map(function (k) { return el('option', { value: k, text: RELATIONS[k].label }); }));
+    rel.value = r.rel;
+    rel.addEventListener('change', function () { r.rel = rel.value; renderRows(); const again = $(id + '-rel'); if (again) again.focus(); changed(); });
+    row.appendChild(el('label', { class: 'f rel' }, [el('span', { text: 'Is my' }), rel]));
+  }
+  row.appendChild(el('div', { class: 'f when-born' }, triple(id + '-b', 'Born', r, ['bm', 'bd', 'by'])));
+  if (!me && R.since) {
+    const label = R.group === 'pet' ? 'Came home (optional)' : (R.group === 'friend' ? 'Friends since (optional)' : 'Together since (optional)');
+    row.appendChild(el('div', { class: 'f since' }, triple(id + '-s', label, r, ['sm', 'sd', 'sy'])));
+  }
+  if (!me) {
+    const gone = el('input', { id: id + '-gone', type: 'checkbox' });
+    gone.checked = !!r.gone;
+    gone.addEventListener('change', function () { r.gone = gone.checked; changed(); });
+    row.appendChild(el('div', { class: 'tail' }, [
+      el('label', { class: 'gone' }, [gone, 'No longer with us']),
+      i >= 2 ? el('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Remove ' + (cleanName(r.name) || 'this person'), text: '×',
+        onclick: function () { state.rows.splice(state.rows.indexOf(r), 1); renderRows(); changed(); } }) : null
+    ]));
+  }
+  return row;
+}
+function renderRows() {
+  const host = $('rows');
+  host.textContent = '';
+  state.rows.forEach(function (r, i) { host.appendChild(rowNode(r, i)); });
+  $('addPerson').disabled = state.rows.length >= MAX_PEOPLE;
+}
+let changeTimer = 0;
+function changed() {
+  clearTimeout(changeTimer);
+  changeTimer = setTimeout(function () { saveState(); refresh(); }, 180);
+}
+
+/* ---------- the moon ---------- */
+
+function moonPath(f, cx, cy, r) {
+  const w = Math.cos(2 * Math.PI * f), rx = Math.max(0.01, Math.abs(w) * r), waxing = f < 0.5;
+  const top = cx + ' ' + (cy - r), bottom = cx + ' ' + (cy + r);
+  return 'M' + top + ' A' + r + ' ' + r + ' 0 0 ' + (waxing ? 1 : 0) + ' ' + bottom + ' A' + rx + ' ' + r + ' 0 0 ' + ((w > 0) === waxing ? 0 : 1) + ' ' + top + ' Z';
+}
+function moonName(f) {
+  if (f < 0.03 || f > 0.97) return 'new moon';
+  if (f < 0.22) return 'waxing crescent';
+  if (f < 0.28) return 'first quarter';
+  if (f < 0.47) return 'waxing gibbous';
+  if (f < 0.53) return 'full moon';
+  if (f < 0.72) return 'waning gibbous';
+  if (f < 0.78) return 'last quarter';
+  return 'waning crescent';
+}
+function moonNode(day, size) {
+  const f = moonPhase(day), r = size / 2 - 1, c = size / 2;
+  const s = sv('svg', { class: 'moon', width: size, height: size, viewBox: '0 0 ' + size + ' ' + size, role: 'img', 'aria-label': moonName(f) });
+  s.appendChild(sv('title', null, 'Moon that night: ' + moonName(f)));
+  s.appendChild(sv('circle', { class: 'disc', cx: c, cy: c, r: r }));
+  s.appendChild(sv('path', { class: 'lit', d: moonPath(f, c, c, r - 0.5) }));
+  return s;
+}
+
+/* ---------- the day ---------- */
+
+function echoTruths(e) {
+  const m = model, Y = m.byId[e.younger], E = m.byId[e.elder], past = e.dn < m.today, fut = e.dn > m.today;
+  const yy = isYou(Y), ye = isYou(E);
+  const be = function (second) { return past ? (second ? 'were' : 'was') : (fut ? 'will be' : (second ? 'are' : 'is')); };
+  const spent = function (second) { return past ? 'had spent' : (fut ? 'will have spent' : (second ? 'have spent' : 'has spent')); };
+  const out = [(yy ? 'You' : Y.name) + ' ' + be(yy) + ' exactly the age ' + (ye ? 'you were' : E.name + ' was') + ' on the day ' + (yy ? 'you were' : Y.name + ' was') + ' born: ' + e.age + '.'];
+  if (e.full) {
+    out.push((ye ? 'You' : E.name) + ' ' + be(ye) + ' exactly twice ' + (yy ? 'your' : poss(Y.name)) + ' age.');
+    if (e.lineage) out.push((ye ? 'You' : E.name) + ' ' + spent(ye) + ' exactly half ' + (ye ? 'your life' : 'a lifetime') + ' as ' + (yy ? 'your' : poss(Y.name)) + ' ' + e.role + '.');
+  }
+  return out;
+}
+function whoLine(e) {
+  const m = model;
+  if (m.example) {
+    const me = m.fam.self, o = m.fam.people[1];
+    return me.name + ', born ' + fmtDate(me.b) + ', and her mother ' + o.name + ', born ' + fmtDate(o.b);
+  }
+  const names = e.who.map(function (id) { return isYou(m.byId[id]) ? 'you' : m.byId[id].name; });
+  const line = joinList(names);
+  return line.charAt(0).toUpperCase() + line.slice(1);
+}
+function shortSpan(a) { return a.y ? a.y + ' yrs' + (a.m ? ' ' + a.m + ' mo' : '') : a.m + ' mo'; }
+
+function drawLifelines(host, e) {
+  const m = model, E = m.byId[e.elder], Y = m.byId[e.younger];
+  host.textContent = '';
+  const W = Math.max(280, Math.min(700, Math.floor(host.getBoundingClientRect().width) || 600)), H = 170;
+  const t0 = E.b, last = Math.max(e.dn, m.today), t1 = last + Math.round((last - t0) * 0.05);
+  const x = function (d) { return Math.round((2 + (d - t0) / (t1 - t0) * (W - 4)) * 10) / 10; };
+  const gap = shortSpan(ageYMD(E.b, Y.b));
+  const s = sv('svg', { class: 'll', width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img',
+    'aria-label': 'Two lifelines. ' + Y.name + ' is born when ' + E.name + ' is ' + gap + ' old, and reaches that same age on Echo Day.' });
+  const bracket = function (x1, x2, y) {
+    s.appendChild(sv('path', { class: 'span', d: 'M' + x1 + ' ' + (y - 4) + ' V' + (y + 4) + ' M' + x1 + ' ' + y + ' H' + x2 + ' M' + x2 + ' ' + (y - 4) + ' V' + (y + 4) }));
+    s.appendChild(sv('text', { x: (x1 + x2) / 2, y: y + 17, 'text-anchor': 'middle' }, gap));
+  };
+  s.appendChild(sv('text', { class: 'nm', x: x(E.b), y: 14 }, E.name));
+  s.appendChild(sv('rect', { class: 'bar-e', x: x(E.b), y: 22, width: x(t1) - x(E.b), height: 10 }));
+  bracket(x(E.b), x(Y.b), 44);
+  s.appendChild(sv('text', { class: 'nm', x: x(Y.b) + 6, y: 82 }, Y.name));
+  s.appendChild(sv('rect', { class: 'bar-y', x: x(Y.b), y: 90, width: x(t1) - x(Y.b), height: 10 }));
+  bracket(x(Y.b), x(e.dn), 112);
+  s.appendChild(sv('line', { class: 'born', x1: x(Y.b), x2: x(Y.b), y1: 22, y2: 100 }));
+  s.appendChild(sv('line', { class: 'echo', x1: x(e.dn), x2: x(e.dn), y1: 4, y2: 142 }));
+  s.appendChild(sv('text', { class: 'mark', x: x(e.dn) - 7, y: 14, 'text-anchor': 'end' }, 'Echo Day'));
+  s.appendChild(sv('line', { class: 'span', x1: x(t0), x2: x(t1), y1: 142, y2: 142 }));
+  s.appendChild(sv('text', { x: x(E.b), y: 160 }, String(parts(E.b).y)));
+  s.appendChild(sv('text', { x: x(Y.b), y: 160, 'text-anchor': 'middle' }, String(parts(Y.b).y)));
+  s.appendChild(sv('text', { class: 'mark', x: x(e.dn), y: 160, 'text-anchor': 'end' }, String(parts(e.dn).y)));
+  if (m.today !== e.dn && Math.abs(x(m.today) - x(e.dn)) > 54 && Math.abs(x(m.today) - x(Y.b)) > 40) {
+    s.appendChild(sv('circle', { class: 'dot', cx: x(m.today), cy: 142, r: 4.5 }));
+    s.appendChild(sv('text', { x: x(m.today), y: 160, 'text-anchor': 'middle' }, 'today'));
+  }
+  host.appendChild(s);
+}
+
+function renderResult() {
+  const host = $('result'), m = model, e = m.hero;
+  host.textContent = '';
+  host.hidden = !e;
+  if (!e) return;
+  const sig = e.key + ':' + e.dn + ':' + e.who.map(function (id) { return m.byId[id].name; }).join('|');
+  const fresh = sig !== state.lastHero;
+  state.lastHero = sig;
+  const p = parts(e.dn);
+  const gutter = el('div', { class: 'gutter' }, [para(e.label, 'eyebrow red'), m.example ? para('Example', 'tag') : null]);
+  const col = el('div', { class: 'col' });
+  col.appendChild(para(whoLine(e), 'result-who'));
+  col.appendChild(el('p', { class: 'bigdate' }, [el('span', { class: 'wd', text: WEEKDAYS[p.w] + ',' }), MONTHS[p.m - 1] + ' ' + p.d + ', ' + p.y]));
+  col.appendChild(para(untilText(m.today, e.dn), 'when'));
+  if (e.dn < m.today && !m.example) col.appendChild(para('It went by unmarked. The ones still ahead are listed below, so the next won’t.', 'missed'));
+  let lines = null;
+  if (e.type === 'echo') {
+    lines = el('div', { class: 'lifelines' });
+    col.appendChild(lines);
+    col.appendChild(el('ol', { class: 'truths' }, echoTruths(e).map(function (t) { return el('li', null, [el('span', { text: t })]); })));
+  } else {
+    col.appendChild(para(e.text, 'daytext'));
+  }
+  col.appendChild(el('div', { class: 'actions' }, [
+    el('button', { type: 'button', class: 'btn', text: 'Keep this day', onclick: function () { openEventSheet(e); } }),
+    el('a', { class: 'btn ghost', href: '#almanac', text: 'See every hidden day' })
+  ]));
+  host.appendChild(el('div', { class: 'wrap grid' }, [gutter, col]));
+  if (lines) drawLifelines(lines, e);
+  if (fresh) { host.classList.remove('fresh'); void host.offsetWidth; host.classList.add('fresh'); }
+}
+
+/* ---------- a small sketch for each kind of day ---------- */
+
+/* Each sketch is a few pen strokes on a 32 by 32 grid. `a` marks the one stroke drawn in red. */
+const SKETCH = {
+  echo: [['circle', { cx: 16, cy: 16, r: 2.6, class: 'a fill' }], ['path', { d: 'M9.5 9.5a9.2 9.2 0 0 0 0 13M22.5 9.5a9.2 9.2 0 0 1 0 13' }], ['path', { d: 'M5.5 5.8a14.5 14.5 0 0 0 0 20.4M26.5 5.8a14.5 14.5 0 0 1 0 20.4' }]],
+  grow: [['circle', { cx: 10, cy: 7.5, r: 3 }], ['path', { d: 'M10 10.5V21M10 21l-3 6M10 21l3 6M5.5 15h9' }], ['circle', { cx: 23, cy: 17, r: 2.2, class: 'a' }], ['path', { d: 'M23 19.2V24M23 24l-2 3M23 24l2 3M20 21.5h6', class: 'a' }]],
+  tally: [['path', { d: 'M7 8.5v15M12 8v15.5M17 8.5v15M22 8v15.5' }], ['path', { d: 'M4 21.5L26 10', class: 'a' }]],
+  heart: [['path', { d: 'M16 26.5C9 21.5 4.5 17 4.5 12.2a5.6 5.6 0 0 1 11.5-1.6a5.6 5.6 0 0 1 11.5 1.6c0 4.8-4.5 9.3-11.5 14.3z', class: 'a' }]],
+  half: [['circle', { cx: 16, cy: 16, r: 11 }], ['path', { d: 'M16 5a11 11 0 0 1 0 22z', class: 'a fill' }]],
+  both: [['circle', { cx: 12, cy: 16, r: 8 }], ['circle', { cx: 20, cy: 16, r: 8, class: 'a' }]],
+  sum: [['circle', { cx: 8, cy: 10, r: 3 }], ['circle', { cx: 8, cy: 22, r: 3 }], ['path', { d: 'M13 16h5M15.5 13.5v5' }], ['circle', { cx: 24, cy: 16, r: 4.5, class: 'a' }]],
+  glass: [['path', { d: 'M9 5h14M9 27h14' }], ['path', { d: 'M10.5 5c0 6.5 5.5 7.5 5.5 11c0-3.5 5.5-4.5 5.5-11M10.5 27c0-6.5 5.5-7.5 5.5-11c0 3.5 5.5 4.5 5.5 11' }], ['path', { d: 'M13 24.5h6l-3-4z', class: 'a fill' }]],
+  page: [['rect', { x: 6, y: 8, width: 20, height: 19, rx: 2.5 }], ['path', { d: 'M6 13.5h20M11.5 5v5.5M20.5 5v5.5' }], ['path', { d: 'M12 21l3 3l5.5-6', class: 'a' }]],
+  planet: [['circle', { cx: 16, cy: 16, r: 6.5 }], ['path', { d: 'M9.8 18.3C5 20.6 2.4 22.6 3 23.8c1 1.9 8.300-.2 15.600-4s11.500-8.500 10.500-10.400c-.600-1.200-3.800-.800-8.500.700', class: 'a' }]],
+  moon: [['path', { d: 'M20.500 5.500a11.200 11.200 0 1 0 6.500 15.500a9 9 0 0 1-6.500-15.500z' }], ['path', { d: 'M24.500 6.500v3M23 8h3', class: 'a' }]],
+  cake: [['path', { d: 'M7 27V18a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9zM5 27h22' }], ['path', { d: 'M7 21c1.500 1.500 3 1.500 4.500 0s3-1.500 4.500 0s3 1.500 4.500 0s3-1.500 4.500 0' }], ['path', { d: 'M16 16v-5' }], ['path', { d: 'M16 8.500c-1.300-1.200-.300-2.800 0-4c.300 1.200 1.300 2.800 0 4z', class: 'a fill' }]],
+  paw: [['path', { d: 'M16 16.500c-3.500 0-6.500 3.200-6.500 6.200c0 2.300 2.200 3.300 6.500 3.300s6.500-1 6.500-3.300c0-3-3-6.200-6.500-6.200z', class: 'a' }], ['circle', { cx: 8, cy: 14, r: 2.3 }], ['circle', { cx: 13, cy: 8.500, r: 2.3 }], ['circle', { cx: 19, cy: 8.500, r: 2.3 }], ['circle', { cx: 24, cy: 14, r: 2.3 }]]
+};
+const SKETCH_FOR = {
+  echo: 'echo', halfagain: 'grow', multiple: 'grow', myriad: 'tally', kiloday: 'tally', odometer: 'tally',
+  weeks: 'page', months: 'page', seconds: 'glass', hours: 'glass', minutes: 'glass', planet: 'planet', moons: 'moon',
+  golden: 'cake', beddian: 'cake', sum: 'both', sumdays: 'both', famsum: 'sum', addup: 'sum',
+  tmyriad: 'heart', tdays: 'heart', tweeks: 'heart', tmonths: 'heart', thours: 'heart', tseconds: 'heart',
+  halflife: 'half', lifeshare: 'both', overtake: 'paw', petyears: 'paw'
+};
+function sketchNode(e) {
+  const pet = e.who.some(function (id) { return model.byId[id] && model.byId[id].kind === 'pet'; });
+  const name = pet && SKETCH_FOR[e.type] !== 'half' ? 'paw' : (SKETCH_FOR[e.type] || 'page');
+  const s = sv('svg', { class: 'sk', width: 46, height: 46, viewBox: '0 0 32 32', 'aria-hidden': 'true' });
+  SKETCH[name].forEach(function (part) { s.appendChild(sv(part[0], part[1])); });
+  return s;
+}
+
+/* ---------- the list ---------- */
+
+function dayRow(e, plain) {
+  const m = model, p = parts(e.dn);
+  const row = el('div', { class: 'day' + (e.weight >= 70 ? ' red' : '') });
+  row.appendChild(el('div', { class: 'md' }, [el('span', { class: 'mo', text: MONTHS[p.m - 1].slice(0, 3) }), el('span', { class: 'dnum', text: String(p.d) })]));
+  row.appendChild(el('div', { class: 'sky' }, [el('span', { class: 'wk', text: WEEKDAYS[p.w].slice(0, 3) }), moonNode(e.dn, 15)]));
+  const words = el('div', { class: 'words' }, [para(e.title, 'title'), para(e.text, 'text')]);
+  if (!plain) words.appendChild(para(untilText(m.today, e.dn), 'away'));
+  row.appendChild(el('div', { class: 'body' }, [sketchNode(e), words]));
+  if (!plain) row.appendChild(el('button', { type: 'button', class: 'btn ghost', text: 'Keep', 'aria-label': 'Keep this day: ' + e.title, onclick: function () { openEventSheet(e); } }));
+  return row;
+}
+function teaser(list) {
+  const seen = {}, out = [];
+  list.slice().sort(function (a, b) { return b.weight - a.weight; }).forEach(function (e) {
+    if (out.length >= 3 || e.weight < 56 || seen[e.label] || !/^[A-Z]/.test(e.label)) return;
+    seen[e.label] = true;
+    const label = e.label === 'Thousand Moons' ? 'thousand moons' : e.label;
+    out.push((/^[aeio]/i.test(label) ? 'an ' : 'a ') + label);
+  });
+  return out.length ? 'Among them: ' + joinList(out) + '.' : '';
+}
+function lockBlock(count, hidden, next) {
+  const m = model, wrap = el('div', { class: 'locked' });
+  for (let i = 0; i < 3; i++) wrap.appendChild(el('div', { class: 'faux', 'aria-hidden': 'true' }, [el('i'), el('div', null, [el('i'), el('i')])]));
+  const tease = (teaser(hidden) + (m.example ? ' This is the example family. Put in your own and the count becomes yours.' : '')).trim();
+  wrap.appendChild(el('div', { class: 'lock-cta' }, [
+    para(num(count) + ' more hidden ' + (count === 1 ? 'day' : 'days') + (next ? ' between now and ' + parts(m.horizon).y : ' already behind you'), 'count'),
+    tease ? para(tease) : null,
+    el('button', { type: 'button', class: 'btn red', text: 'Unlock the whole almanac · ' + PRICE_TEXT, onclick: unlock }),
+    para('One payment. No subscription, no account.', 'hint')
+  ]));
+  return wrap;
+}
+function renderTimeline() {
+  const host = $('timeline'), m = model, next = state.tab === 'next';
+  host.textContent = '';
+  $('tabNext').setAttribute('aria-selected', String(next));
+  $('tabPast').setAttribute('aria-selected', String(!next));
+  host.setAttribute('aria-labelledby', next ? 'tabNext' : 'tabPast');
+  const all = next ? m.upcoming : m.past;
+  const shown = m.unlocked ? all.slice(0, next ? 400 : 80) : (next ? m.free : all.slice(0, 1));
+  const perYear = {};
+  shown.forEach(function (e) { const y = parts(e.dn).y; perYear[y] = (perYear[y] || 0) + 1; });
+  let year = 0;
+  shown.forEach(function (e) {
+    const y = parts(e.dn).y;
+    if (y !== year) { year = y; host.appendChild(el('h3', { class: 'year-head' }, [String(y), el('small', { text: perYear[y] + (perYear[y] === 1 ? ' day' : ' days') })])); }
+    host.appendChild(dayRow(e));
+  });
+  if (!shown.length) host.appendChild(para(next ? 'No hidden days fall in the next ten years for these two. Add someone else and there will be.' : 'Nothing behind you yet. They are all still to come.', 'empty'));
+  const hidden = all.filter(function (e) { return shown.indexOf(e) < 0; });
+  if (!m.unlocked && hidden.length) host.appendChild(lockBlock(hidden.length, hidden, next));
+  const names = joinList(m.fam.people.map(function (p) { return p.name; }));
+  $('almanacSub').textContent = num(m.upcoming.length) + ' hidden days fall between now and ' + parts(m.horizon).y + ' for ' + names + '.' +
+    (m.unlocked ? '' : ' The first three are free to read.');
+}
+
+/* ---------- price, ownership, the printed year ---------- */
+
+function renderOwned() {
+  const m = model;
+  $('priceInline').textContent = PRICE_TEXT;
+  $('unlockBtn').hidden = m.unlocked;
+  $('unlockBtn').textContent = 'Unlock the whole almanac · ' + PRICE_TEXT;
+  $('restoreBtn').hidden = !LIVE || m.unlocked;
+  let line = 'One payment. No subscription, no account.';
+  if (state.shared) line = 'This almanac was unlocked by the person who sent it to you.';
+  else if (m.unlocked) line = LIVE ? 'Unlocked. Your key is ' + state.key + '. Keep it: it restores the almanac on any device.' : 'Unlocked in this preview. Nothing was charged.';
+  $('unlockState').textContent = line;
+  $('owned').hidden = !m.unlocked || !!state.shared || m.example;
+  if (FREE) { $('ownedHint').textContent = 'The calendar file works with Apple Calendar, Google Calendar and Outlook. The link carries the names and birthdays inside it, so send it only to family.'; return; }
+  $('ownedHint').textContent = LIVE ? 'The calendar link works with Apple Calendar, Google Calendar and Outlook, and keeps itself up to date.'
+    : 'In this preview these two buttons describe what the live site does: the calendar link and the gift link are made by the real server.';
+}
+function leapLine(y) {
+  if (isLeap(y)) return 'being leap year';
+  const k = y % 4;
+  return k ? 'being the ' + ['', 'first', 'second', 'third'][k] + ' after leap year' : 'being a common year';
+}
+function renderEdition() {
+  const m = model, y = state.year, host = $('pages');
+  host.textContent = '';
+  $('editionYearText').textContent = String(y);
+  const inYear = m.events.filter(function (e) { return parts(e.dn).y === y; });
+  const names = joinList(m.fam.people.map(function (p) { return p.name; }));
+  $('editionSub').textContent = m.unlocked
+    ? num(inYear.length) + ' hidden ' + (inYear.length === 1 ? 'day falls' : 'days fall') + ' in ' + y + '.' + (OWN ? ' Print it, or save it as a PDF and send it.' : ' On the live site this prints, or saves as a PDF.')
+    : 'The cover and the first entries are free to look at. The rest of ' + y + ' comes with the almanac.';
+  const title = cleanName(state.shared ? state.shared.title : state.title, 40) || (m.fam.people.length <= 3 ? names : 'Us');
+  host.appendChild(el('div', { class: 'leaf cover' }, [
+    para('An almanac of', 'an'),
+    para(title, 'ttl'),
+    el('p', { class: 'yr' }, ['for the year ', el('b', { text: String(y) }), ', ' + leapLine(y)]),
+    el('div', { class: 'rule' }),
+    el('p', { class: 'of' }, ['Containing the red-letter days of ', el('b', { text: names }), ', which no other calendar prints.']),
+    para(SITE, 'by')
+  ]));
+  const leaf = el('div', { class: 'leaf' });
+  if (!inYear.length) leaf.appendChild(para('No hidden days fall in ' + y + ' for this family. Try another year.', 'leaf-note'));
+  const shown = m.unlocked ? inYear : inYear.slice(0, 2);
+  let month = 0;
+  shown.forEach(function (e) {
+    const mo = parts(e.dn).m;
+    if (mo !== month) { month = mo; leaf.appendChild(para(MONTHS[mo - 1], 'month-head')); }
+    leaf.appendChild(dayRow(e, true));
+  });
+  if (!m.unlocked && inYear.length > shown.length) leaf.appendChild(para((inYear.length - shown.length) + ' more in ' + y + ', printed once the almanac is unlocked.', 'leaf-note'));
+  host.appendChild(leaf);
+}
+
+function refresh() {
+  compute();
+  const err = $('formError');
+  err.hidden = !model.problem;
+  err.textContent = model.problem;
+  renderResult();
+  renderTimeline();
+  renderOwned();
+  renderEdition();
+}
+
+/* ---------- keeping a day: the card, the calendar, the note ---------- */
+
+function noteFor(e) {
+  const m = model, fut = e.dn > m.today, past = e.dn < m.today, when = fmtLong(e.dn);
+  if (e.type === 'echo' && e.full) {
+    if (isYou(m.byId[e.younger])) {
+      if (fut) return 'On ' + when + ', I will be exactly the age you were on the day I was born. You will be exactly twice my age that day, for the only time in our lives. I worked it out, and I wanted you to know I’m grateful for every one of those years.';
+      if (past) return 'I just found out that on ' + when + ', I was exactly the age you were on the day I was born. You were exactly twice my age that day, for the only time in our lives. I missed it then, so I’m telling you now: thank you for every one of those years.';
+      return 'Today I am exactly the age you were on the day I was born. You are exactly twice my age, for the only day in our lives. Thank you for every one of those years.';
+    }
+    if (isYou(m.byId[e.elder])) {
+      if (fut) return 'On ' + when + ', you will be exactly the age I was on the day you were born. I remember that day better than any other. I can’t wait to see who you are by then.';
+      if (past) return 'I just worked out that on ' + when + ', you were exactly the age I was on the day you were born. I remember that day better than any other, and I’m prouder now than I was then.';
+      return 'Today you are exactly the age I was on the day you were born. I remember that day better than any other.';
+    }
+  }
+  if (e.type === 'halflife' && isYou(m.byId[e.of])) {
+    if (fut) return 'On ' + when + ', I will have known you for exactly half my life. From the next day on, it’s more than half. It’s the better half.';
+    if (past) return 'I just worked out that since ' + fmtDate(e.dn) + ', I have known you for more than half my life. It’s the better half.';
+    return 'As of today I have known you for exactly half my life. From tomorrow it’s more than half. It’s the better half.';
+  }
+  return (fut || past ? when : 'Today') + ': ' + e.title + '. ' + e.text + ' I thought you should know.';
+}
+function googleLink(e) {
+  return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(e.title) +
+    '&dates=' + iso(e.dn).replace(/-/g, '') + '/' + iso(e.dn + 1).replace(/-/g, '') + '&details=' + encodeURIComponent(e.text);
+}
+function fontsReady() {
+  if (!document.fonts || !document.fonts.load) return Promise.resolve();
+  const wait = Promise.all([document.fonts.load('150px "Libre Caslon Display"'), document.fonts.load('italic 44px "Libre Caslon Text"'), document.fonts.load('40px "Libre Caslon Text"'), document.fonts.load('600 26px Archivo')]);
+  return Promise.race([wait, new Promise(function (r) { setTimeout(r, 1800); })]).catch(function () {});
+}
+function drawCard(cv, e) {
+  const W = 1080, H = 1350, c = cv.getContext('2d');
+  const ink = '#14213A', soft = '#4B5B76', red = '#BF2B1D', paper = '#EEF2F5';
+  const display = '"Libre Caslon Display", "Libre Caslon Text", Georgia, serif', text = '"Libre Caslon Text", Georgia, serif', ui = 'Archivo, "Helvetica Neue", Arial, sans-serif';
+  cv.width = W; cv.height = H;
+  c.fillStyle = paper; c.fillRect(0, 0, W, H);
+  c.strokeStyle = ink; c.lineWidth = 3; c.strokeRect(46, 46, W - 92, H - 92);
+  c.lineWidth = 1; c.strokeRect(58, 58, W - 116, H - 116);
+  c.textBaseline = 'alphabetic';
+  const spaced = function (str, y, gap) {
+    let total = 0;
+    const widths = str.split('').map(function (ch) { const w = c.measureText(ch).width + gap; total += w; return w; });
+    let x = (W - (total - gap)) / 2;
+    c.textAlign = 'left';
+    str.split('').forEach(function (ch, i) { c.fillText(ch, x, y); x += widths[i]; });
+  };
+  const fit = function (str, y, size, family, max) {
+    let s = size;
+    do { c.font = s + 'px ' + family; s -= 4; } while (c.measureText(str).width > max && s > 40);
+    c.textAlign = 'center';
+    c.fillText(str, W / 2, y);
+  };
+  const p = parts(e.dn);
+  c.fillStyle = ink; c.font = '600 26px ' + ui; spaced('ALMANAC OF US', 150, 9);
+  c.fillRect(W / 2 - 60, 178, 120, 2); c.fillRect(W / 2 - 60, 184, 120, 1);
+  c.fillStyle = red; c.font = '600 32px ' + ui; spaced(e.label.toUpperCase(), 300, 10);
+  c.fillStyle = ink; c.textAlign = 'center'; c.font = 'italic 46px ' + text; c.fillText(WEEKDAYS[p.w], W / 2, 400);
+  c.fillStyle = red; fit(MONTHS[p.m - 1] + ' ' + p.d, 560, 156, display, 880);
+  c.fillStyle = ink; c.font = '88px ' + display; c.textAlign = 'center'; c.fillText(String(p.y), W / 2, 672);
+  const f = moonPhase(e.dn);
+  c.save(); c.translate(W / 2, 748);
+  c.fillStyle = ink; c.beginPath(); c.arc(0, 0, 17, 0, Math.PI * 2); c.fill();
+  c.fillStyle = paper; c.fill(new Path2D(moonPath(f, 0, 0, 15.5)));
+  c.restore();
+  c.fillStyle = soft; c.font = '500 22px ' + ui; spaced(moonName(f).toUpperCase(), 806, 5);
+  c.fillStyle = ink; c.font = '40px ' + text; c.textAlign = 'center';
+  const words = e.text.split(' '), lines = [];
+  let line = '';
+  words.forEach(function (w) {
+    const trial = line ? line + ' ' + w : w;
+    if (c.measureText(trial).width > 820 && line) { lines.push(line); line = w; } else line = trial;
+  });
+  if (line) lines.push(line);
+  const shownLines = lines.slice(0, 6);
+  if (lines.length > 6) shownLines[5] = shownLines[5].replace(/\W*\w+$/, '') + '…';
+  let y = 900;
+  shownLines.forEach(function (ln) { c.fillText(ln, W / 2, y); y += 58; });
+  c.fillStyle = soft; c.font = '500 22px ' + ui; spaced('FIND YOUR OWN HIDDEN DAYS', H - 152, 6);
+  c.fillStyle = ink; c.font = '38px ' + display; c.textAlign = 'center'; c.fillText(SITE, W / 2, H - 100);
+}
+function openEventSheet(e) {
+  const cv = el('canvas', { class: 'card', width: '1080', height: '1350', role: 'img', 'aria-label': 'A card for ' + e.title + ', ' + fmtLong(e.dn) });
+  const note = el('textarea', { class: 'note', id: 'noteText', 'aria-label': 'A note to send' });
+  note.value = noteFor(e);
+  const stem = e.label.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-' + iso(e.dn);
+  openSheet('Keep this day', [
+    cv,
+    el('div', { class: 'sheet-actions' }, [
+      el('button', { type: 'button', class: 'btn', text: 'Save the card', onclick: function () { cv.toBlob(function (blob) { if (blob) saveFile(stem + '.png', blob); }, 'image/png'); } }),
+      el('a', { class: 'btn ghost', href: googleLink(e), target: '_blank', rel: 'noopener', text: 'Add to Google Calendar' }),
+      OWN ? el('button', { type: 'button', class: 'btn ghost', text: 'Apple or Outlook file', onclick: function () { saveFile(stem + '.ics', new Blob([buildICS([e], { name: BRAND })], { type: 'text/calendar' })); } }) : null
+    ]),
+    para('A note to send with it. Change anything you like.', 'hint'),
+    note,
+    el('div', { class: 'sheet-actions' }, [el('button', { type: 'button', class: 'btn ghost', text: 'Copy the note', onclick: function () { copyText(note.value, 'Note copied.'); } })])
+  ]);
+  drawCard(cv, e);
+  fontsReady().then(function () { drawCard(cv, e); });
+}
+
+/* ---------- buying and owning ---------- */
+
+function unlock() {
+  if (model.unlocked) return;
+  if (!LIVE) {
+    openSheet('Preview checkout', [
+      para('On the live site this step is a card payment. In this preview no card is asked for and nothing is charged.'),
+      el('dl', { class: 'order' }, [el('dt', { text: 'The whole almanac, one family' }), el('dd', { text: PRICE_TEXT }), el('dt', { class: 'total', text: 'Charged in this preview' }), el('dd', { class: 'total', text: '$0' })]),
+      el('div', { class: 'sheet-actions' }, [el('button', { type: 'button', class: 'btn red', text: 'Complete the preview purchase',
+        onclick: function () { state.key = 'PREVIEW'; saveState(); closeSheet(); refresh(); toast('Unlocked in this preview. Nothing was charged.'); } })])
+    ]);
+    return;
+  }
+  openSheet('One moment', [para('Opening the secure checkout.')]);
+  call('/api/checkout', {}).then(function (d) { location.assign(d.url); }, function (err) { openSheet('Checkout isn’t available', [para(err.message)]); });
+}
+function restore() {
+  const input = el('input', { class: 'linkbox', id: 'restoreKey', type: 'text', autocomplete: 'off', placeholder: 'AOU-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX', 'aria-label': 'Your key' });
+  const msg = para('', 'form-error');
+  msg.hidden = true;
+  openSheet('Restore your almanac', [
+    para('Your key is in the payment receipt we emailed you.'),
+    input, msg,
+    el('div', { class: 'sheet-actions' }, [el('button', { type: 'button', class: 'btn', text: 'Restore', onclick: function () {
+      const key = input.value.trim().toUpperCase();
+      call('/api/verify', { key: key }).then(function () { state.key = key; saveState(); closeSheet(); refresh(); toast('Welcome back. The almanac is unlocked.'); },
+        function (err) { msg.textContent = err.code === 'bad_key' ? 'That key doesn’t match. Check it against the receipt.' : err.message; msg.hidden = false; });
+    } })])
+  ]);
+}
+function sealed() { return call('/api/seal', { key: state.key, family: currentRaw() }).then(function (d) { return d.token; }); }
+function b64u(text) {
+  let s = '';
+  new TextEncoder().encode(text).forEach(function (b) { s += String.fromCharCode(b); });
+  return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+function unb64u(str) {
+  const s = atob(str.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((str.length + 3) % 4));
+  return new TextDecoder().decode(Uint8Array.from(s, function (c) { return c.charCodeAt(0); }));
+}
+function calendarSheet() {
+  if (FREE) {
+    const events = model.events.filter(function (e) { return e.dn >= model.today - 366 && e.dn <= model.today + 5479; });
+    saveFile('almanac-of-us.ics', new Blob([buildICS(events, { name: state.title ? BRAND + ': ' + cleanName(state.title, 40) : BRAND, url: location.origin + location.pathname, headsUp: true })], { type: 'text/calendar' }));
+    openSheet('Your calendar file', [
+      para('A file with ' + num(events.length) + ' entries has been saved: the past year and the next fifteen, with a week\u2019s notice before the big days.'),
+      para('Open it on an iPhone or a Mac to add everything at once. In Google Calendar, choose Settings, then Import.')
+    ]);
+    return;
+  }
+  if (!LIVE) {
+    openSheet('The calendar link', [
+      para('On the live site this hands you one private link. Add it to Apple Calendar, Google Calendar or Outlook once, and every hidden day arrives on your phone by itself, with a week’s notice before the big ones.'),
+      para('Your link would carry ' + num(model.upcoming.length) + ' days through ' + parts(model.horizon).y + ', and it keeps rolling forward after that.'),
+      para('Until then, “Keep” beside any day adds that one to Google Calendar.', 'hint')
+    ]);
+    return;
+  }
+  openSheet('Your calendar link', [para('Sealing your almanac into a link.')]);
+  sealed().then(function (token) {
+    const https = location.origin + '/cal/' + token + '.ics';
+    openSheet('Your calendar link', [
+      para('On an iPhone or a Mac, the button adds it in one step. For Google Calendar or Outlook, copy the link and choose “Add calendar from URL”.'),
+      el('div', { class: 'sheet-actions' }, [
+        el('a', { class: 'btn', href: https.replace(/^https?:/, 'webcal:'), text: 'Add to my calendar' }),
+        el('button', { type: 'button', class: 'btn ghost', text: 'Copy the link', onclick: function () { copyText(https, 'Link copied.'); } })
+      ]),
+      linkBox(https, 'Your calendar link'),
+      para('Anyone with this link can see these dates, so share it only with family.', 'hint')
+    ]);
+  }, function (err) { openSheet('Your calendar link', [para(err.message)]); });
+}
+function giftSheet() {
+  if (FREE) {
+    const url = location.origin + location.pathname + '#a.' + b64u(packFamily(model.fam));
+    openSheet('A link to send', [
+      para('Send this to the person it\u2019s for. It opens their finished almanac.'),
+      linkBox(url, 'Gift link'),
+      el('div', { class: 'sheet-actions' }, [el('button', { type: 'button', class: 'btn', text: 'Copy the link', onclick: function () { copyText(url, 'Link copied.'); } })]),
+      para('The names and birthdays travel inside the link itself, so anyone who has it can read them.', 'hint')
+    ]);
+    return;
+  }
+  if (!LIVE) {
+    openSheet('A link to send', [
+      para('On the live site this makes a link to the finished almanac. Whoever opens it sees every day, already unlocked, with the family’s name on the cover. They don’t pay and they don’t sign up.'),
+      para('Under their almanac is one line inviting them to start their own.', 'hint')
+    ]);
+    return;
+  }
+  openSheet('A link to send', [para('Sealing the almanac into a link.')]);
+  sealed().then(function (token) {
+    const url = location.origin + '/#a.' + token;
+    openSheet('A link to send', [
+      para('Send this to the person it’s for. It opens their almanac, already unlocked.'),
+      linkBox(url, 'Gift link'),
+      el('div', { class: 'sheet-actions' }, [el('button', { type: 'button', class: 'btn', text: 'Copy the link', onclick: function () { copyText(url, 'Link copied.'); } })])
+    ]);
+  }, function (err) { openSheet('A link to send', [para(err.message)]); });
+}
+
+/* ---------- start ---------- */
+
+function showShared(on) {
+  $('giftBar').hidden = !on;
+  document.querySelector('.finder').hidden = on;
+  $('coverTitle').disabled = on;
+  $('coverTitle').value = on ? cleanName(state.shared.title, 40) : state.title;
+  if (on) $('giftBarText').textContent = 'Someone made this almanac for you' + (state.shared.title ? ' and put “' + cleanName(state.shared.title, 40) + '” on the cover.' : '.');
+}
+function start() {
+  $('previewBar').hidden = OWN;
+  $('printBtn').hidden = !OWN;
+  document.querySelectorAll(FREE ? '.paid-only' : '.free-only').forEach(function (n) { n.hidden = true; });
+  loadState();
+  const now = new Date();
+  state.year = now.getFullYear() + (now.getMonth() >= 9 ? 1 : 0);
+  const years = $('editionYear');
+  [0, 1, 2].forEach(function (k) { years.appendChild(el('option', { value: String(now.getFullYear() + k), text: String(now.getFullYear() + k) })); });
+  years.value = String(state.year);
+  $('coverTitle').value = state.title;
+  renderRows();
+  refresh();
+
+  $('addPerson').addEventListener('click', function () {
+    if (state.rows.length >= MAX_PEOPLE) return;
+    const r = blankRow('partner');
+    state.rows.push(r);
+    renderRows();
+    const field = $('p' + r.uid + '-name');
+    if (field) field.focus();
+    saveState();
+  });
+  $('people').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    clearTimeout(changeTimer);
+    saveState();
+    refresh();
+    if (model.example) {
+      const err = $('formError');
+      err.textContent = model.problem || 'Add both first names and full birthdays, then try again.';
+      err.hidden = false;
+      return;
+    }
+    const host = $('result');
+    host.classList.remove('fresh');
+    void host.offsetWidth;
+    host.classList.add('fresh');
+    host.scrollIntoView();
+  });
+  $('tabNext').addEventListener('click', function () { state.tab = 'next'; renderTimeline(); });
+  $('tabPast').addEventListener('click', function () { state.tab = 'past'; renderTimeline(); });
+  $('unlockBtn').addEventListener('click', unlock);
+  $('restoreBtn').addEventListener('click', restore);
+  $('calBtn').addEventListener('click', calendarSheet);
+  $('giftBtn').addEventListener('click', giftSheet);
+  $('printBtn').addEventListener('click', function () { window.print(); });
+  $('sheetClose').addEventListener('click', closeSheet);
+  $('sheet').addEventListener('click', function (ev) { if (ev.target === $('sheet')) closeSheet(); });
+  $('coverTitle').addEventListener('input', function () { state.title = $('coverTitle').value; saveState(); renderEdition(); });
+  years.addEventListener('change', function () { state.year = +years.value; renderEdition(); });
+  $('giftOwn').addEventListener('click', function () { state.shared = null; showShared(false); if (OWN) history.replaceState(null, '', location.pathname); refresh(); $('finder').scrollIntoView(); });
+  let resizeTimer = 0;
+  window.addEventListener('resize', function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(function () { const host = document.querySelector('.lifelines'); if (host && model.hero) drawLifelines(host, model.hero); }, 160); });
+
+  if (FREE) {
+    const openFree = function () {
+      if (location.hash.slice(0, 3) !== '#a.') return;
+      let raw = null;
+      try { raw = unpackFamily(unb64u(location.hash.slice(3))); } catch (e) { raw = null; }
+      if (!raw || !normalizeFamily(raw, null).ok) { toast('That link is damaged or incomplete.'); return; }
+      state.shared = raw; showShared(true); refresh(); window.scrollTo(0, 0);
+    };
+    window.addEventListener('hashchange', openFree);
+    openFree();
+    return;
+  }
+  if (!LIVE) {
+    if (window.claude && window.claude.use) window.claude.use('downloads').then(function (d) { downloads = d; }, function () { downloads = null; });
+    return;
+  }
+  const sid = new URLSearchParams(location.search).get('session_id');
+  if (sid) {
+    call('/api/unlock?session_id=' + encodeURIComponent(sid)).then(function (d) {
+      state.key = d.key; saveState();
+      history.replaceState(null, '', location.pathname + location.hash);
+      refresh();
+      openSheet('The almanac is yours', [
+        para('Every hidden day is unlocked on this device. Your key is below and in your receipt. It restores the almanac anywhere.'),
+        linkBox(d.key, 'Your key'),
+        el('div', { class: 'sheet-actions' }, [el('button', { type: 'button', class: 'btn', text: 'Show me my days', onclick: function () { closeSheet(); $('almanac').scrollIntoView(); } })])
+      ]);
+    }, function (err) {
+      history.replaceState(null, '', location.pathname + location.hash);
+      openSheet('That payment didn’t go through', [para(err.code === 'not_paid' ? 'No money was taken. You can try again whenever you like.' : err.message)]);
+    });
+  }
+  const openGift = function () {
+    if (location.hash.slice(0, 3) !== '#a.') return;
+    call('/api/open?token=' + encodeURIComponent(location.hash.slice(3))).then(function (d) {
+      state.shared = d.family; showShared(true); refresh(); window.scrollTo(0, 0);
+    }, function () { toast('That gift link is damaged or incomplete.'); });
+  };
+  window.addEventListener('hashchange', openGift);
+  openGift();
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+
+})();
+</script>
+</body>
+</html>
